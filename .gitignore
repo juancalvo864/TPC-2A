@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+**/.vs/
+
+# Compilados
+bin/
+obj/
+**/bin/
+**/obj/
+
+# User files
+*.user
+*.suo
+*.rsuser
+
+# Packages antiguos de NuGet
+packages/
+!packages/repositories.config
