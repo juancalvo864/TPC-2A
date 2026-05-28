@@ -12,11 +12,12 @@ namespace dominio
         public string HashPassword { get; set; }
         public bool Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public List<UsuarioRol> Roles { get; set; }
+        public Rol Rol { get; set; }
 
         public Usuario()
         {
-            Roles = new List<UsuarioRol>();
+            FechaCreacion = DateTime.Now;
+            Activo = true;
         }
     }
 }
