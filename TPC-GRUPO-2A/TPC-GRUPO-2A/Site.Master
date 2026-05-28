@@ -40,7 +40,7 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Nombre de la aplicación</a>
+                <a class="navbar-brand" runat="server" href="~/">CallCenter</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -48,8 +48,6 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -58,8 +56,35 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+            <footer class="footer" id="Nosotros">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Integrantes</h4>
+                            <ul>
+                                <li>Lucio Luque</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5">
+                            <h4>Repositorio del proyecto</h4>
+                            <ul>
+                                <li><a href="https://github.com/juancalvo864/TPC-2A.git" target="_blank" class="hover-link">Enlace al repositorio</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Githubs</h4>
+                            <ul class="social-icons">
+                                <li><a href="https://github.com/LucioNiderhaus" target="_blank" class="hover-link">Github de Lucio</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-bar">
+                    <div class="container">
+                        <p class="copyright text-center">&copy; 2026 Proyecto CallCenter. Todos los derechos reservados.</p>
+                        <a class="hover-link text-center" href="#Navbar">Volver arriba</a>
+                    </div>
+                </div>
             </footer>
         </div>
     </form>
