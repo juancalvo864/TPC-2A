@@ -9,7 +9,7 @@ namespace negocio
 {
     public class CategoriaNegocio
     {
-
+        /*
         public List<Categoria> Listar()
         {
 			List<Categoria> listaCategoria = new List<Categoria>();	
@@ -198,5 +198,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        */
     }
 }

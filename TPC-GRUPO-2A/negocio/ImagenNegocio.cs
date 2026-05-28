@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace negocio
 {
+    /*
     public class ImagenNegocio
     {
         public List<Imagen> Listar(int idArticulo)
@@ -79,4 +80,5 @@ namespace negocio
             }
         }
     }
+    */
 }

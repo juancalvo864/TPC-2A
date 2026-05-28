@@ -9,7 +9,7 @@ namespace negocio
 {
     public class ArticuloNegocio
     {
-
+        /*
         public List<Articulo> Listar()
         {
 			List<Articulo> listaArticulos = new List<Articulo>();	
@@ -326,5 +326,7 @@ namespace negocio
                 datos.cerrarConexion(); 
             }
         }
+        */
     }
+        
 }

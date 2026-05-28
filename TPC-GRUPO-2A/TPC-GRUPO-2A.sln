@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37314.3 d17.14
+VisualStudioVersion = 17.14.37314.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPC-GRUPO-2A", "TPC-GRUPO-2A\TPC-GRUPO-2A.csproj", "{031EFBDD-4B30-42AE-BA4F-271BF6D92E3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPC-GRUPO-2A.Tests", "TPC-GRUPO-2A.Tests\TPC-GRUPO-2A.Tests.csproj", "{B29C72E4-D526-4916-BEA8-3526AA29BDC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{75C9C28E-83BA-4FD0-9952-201279111437}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocio", "negocio\negocio.csproj", "{949A8516-F60E-4642-85A4-83CD2CDCDFAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{B29C72E4-D526-4916-BEA8-3526AA29BDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B29C72E4-D526-4916-BEA8-3526AA29BDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B29C72E4-D526-4916-BEA8-3526AA29BDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C9C28E-83BA-4FD0-9952-201279111437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C9C28E-83BA-4FD0-9952-201279111437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C9C28E-83BA-4FD0-9952-201279111437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C9C28E-83BA-4FD0-9952-201279111437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{949A8516-F60E-4642-85A4-83CD2CDCDFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949A8516-F60E-4642-85A4-83CD2CDCDFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949A8516-F60E-4642-85A4-83CD2CDCDFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949A8516-F60E-4642-85A4-83CD2CDCDFAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
