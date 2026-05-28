@@ -23,3 +23,16 @@ INSERT INTO PRIORIDADES (nombre, nivel, activo) VALUES ('Baja', 3, 1)
 INSERT INTO TIPOS_INCIDENCIA (nombre, descripcion, activo) VALUES ('Facturacion', 'Reclamos relacionados con cobros y facturas', 1)
 INSERT INTO TIPOS_INCIDENCIA (nombre, descripcion, activo) VALUES ('Tecnico', 'Problemas tecnicos del servicio', 1)
 INSERT INTO TIPOS_INCIDENCIA (nombre, descripcion, activo) VALUES ('Consulta', 'Consultas generales', 1)
+
+--Clientes
+INSERT INTO CLIENTES (nombre, email, telefono, identificacion, activo, fecha_alta)
+VALUES ('Luis García', 'lgarcia@mail.com', '11-4455-6677', 'DNI 28450112', 1, GETDATE())
+
+INSERT INTO CLIENTES (nombre, email, telefono, identificacion, activo, fecha_alta)
+VALUES ('Ana Martínez', 'ana.martinez@mail.com', '11-5566-7788', 'DNI 31220445', 1, GETDATE())
+
+INSERT INTO CLIENTES (nombre, email, telefono, identificacion, activo, fecha_alta)
+VALUES ('Roberto López', 'rlopez@mail.com', '11-6677-8899', 'DNI 25100778', 1, GETDATE())
+
+INSERT INTO CLIENTES (nombre, email, telefono, identificacion, activo, fecha_alta)
+VALUES ('Paula Fernández', 'pfernandez@mail.com', NULL, 'DNI 33445566', 0, GETDATE())
