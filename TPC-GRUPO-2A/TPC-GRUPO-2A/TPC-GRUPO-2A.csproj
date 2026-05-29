@@ -99,6 +99,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TiposIncidencias.aspx" />
+    <Content Include="Prioridades.aspx" />
+    <Content Include="Usuarios.aspx" />
+    <Content Include="Reclamos.aspx" />
+    <Content Include="Clientes.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -185,6 +190,41 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TiposIncidencias.aspx.cs">
+      <DependentUpon>TiposIncidencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TiposIncidencias.aspx.designer.cs">
+      <DependentUpon>TiposIncidencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prioridades.aspx.cs">
+      <DependentUpon>Prioridades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prioridades.aspx.designer.cs">
+      <DependentUpon>Prioridades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reclamos.aspx.cs">
+      <DependentUpon>Reclamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reclamos.aspx.designer.cs">
+      <DependentUpon>Reclamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
