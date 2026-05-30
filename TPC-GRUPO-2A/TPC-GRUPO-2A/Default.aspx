@@ -2,7 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:GridView ID="dgvClientes" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered" DataKeyNames="Id">
-        <Columns>
+       
+ <%--       <Columns>
             <asp:BoundField DataField="Id" HeaderText="ID" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
             <asp:BoundField DataField="Email" HeaderText="Email" />
@@ -19,6 +20,6 @@
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:CommandField ShowSelectButton="true" HeaderText="Seleccionar" />
-        </Columns>
+        </Columns>--%>
     </asp:GridView>
 </asp:Content>

@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace negocio
 {
@@ -38,6 +40,47 @@ namespace negocio
             }
 
             return clientes;
+        }
+
+
+        public List<Cliente> listarClientesConSP()  
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                //string consulta = @"SELECT id, nombre, email, telefono, identificacion, activo, fecha_alta FROM Clientes";
+                //datos.setearConsulta(consulta);
+
+                datos.setearProcedimiento("SP_ListarClientes");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Cliente cliente = new Cliente();
+
+                    cliente.Id = (int)datos.Lector["id"];
+                    cliente.Nombre = (string)datos.Lector["nombre"];
+                    cliente.Email = (string)datos.Lector["email"];
+                    cliente.Telefono = (string)datos.Lector["telefono"];
+                    cliente.Identificacion = (string)datos.Lector["identificacion"];
+                    cliente.Activo = (bool)datos.Lector["activo"];
+                    cliente.FechaAlta = (DateTime)datos.Lector["fecha_alta"];
+
+                    lista.Add(cliente);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void Agregar(Cliente c)

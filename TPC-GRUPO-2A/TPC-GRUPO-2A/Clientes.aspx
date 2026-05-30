@@ -3,6 +3,6 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main>
         <h2>Página de Clientes</h2>
-        <p> Módulo en desarrollo.</p>
+        <asp:GridView ID="dgvClientes" runat="server" CssClass="table"></asp:GridView>
     </main>
 </asp:Content>

@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\DB\SP.sql" />
     <Content Include="TiposIncidencias.aspx" />
     <Content Include="Prioridades.aspx" />
     <Content Include="Usuarios.aspx" />

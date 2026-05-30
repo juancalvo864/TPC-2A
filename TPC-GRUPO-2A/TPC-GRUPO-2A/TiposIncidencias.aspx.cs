@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TPC_GRUPO_2A
 {
-    public partial class About : Page
+    public partial class TiposIncidencias : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
