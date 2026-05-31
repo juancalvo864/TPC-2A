@@ -161,6 +161,48 @@ body {
     padding: 0 24px 18px;
 }
 
+
+/********FOOTER***************/
+
+.app-footer {
+    border-top: 1px solid #e5e7eb;
+    background: #ffffff;
+    padding: 18px 24px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.footer-group strong {
+    display: block;
+    color: #1f2937;
+    font-size: 14px;
+}
+
+.footer-group span {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.footer-repo a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-repo a:hover {
+    text-decoration: underline;
+}
+
+.bi-github{
+    font-size:2rem
+}
+
 @media screen and (max-width: 768px) {
     .app-shell {
         display: block;
@@ -185,4 +227,5 @@ body {
     .app-content {
         padding: 16px;
     }
+
 }

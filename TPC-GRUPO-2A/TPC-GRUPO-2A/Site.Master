@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TPC_GRUPO_2A.SiteMaster" %>
 <%@ Register Src="~/Controls/Sidebar.ascx" TagPrefix="uc" TagName="Sidebar" %>
+<%@ Register Src="~/Controls/Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="~/Controls/Footer.ascx" TagPrefix="uc" TagName="Footer"%>
 
 <!DOCTYPE html>
 
@@ -16,8 +18,9 @@
 
     <link runat="server" href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link runat="server" href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link runat="server" href="~/Content/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet" />
     <link runat="server" href="~/Content/Site.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>"></script>
 </head>
 <body>
     <form runat="server" class="app-shell">
@@ -43,30 +46,15 @@
         <uc:Sidebar runat="server" ID="Sidebar" />
 
         <main class="app-main">
-            <header class="app-topbar">
-                <div class="topbar-search">
-                    <input class="form-control"
-                        type="search"
-                        placeholder="Buscar cliente, reclamo o telefono..."
-                        aria-label="Buscar">
-                </div>
 
-                <div class="topbar-user">
-                    <div class="user-avatar">SU</div>
-                    <div>
-                        <strong>SuperUser</strong>
-                        <span>Supervisor</span>
-                    </div>
-                </div>
-            </header>
+            <uc:Header runat="server" ID="Header" />
 
             <section class="app-content">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server"> </asp:ContentPlaceHolder>
             </section>
 
-            <footer class="app-footer">
-                &copy; 2026 Proyecto CallCenter
-            </footer>
+            <uc:Footer runat="server" ID="Footer" />
+
         </main>
     </form>
 </body>
