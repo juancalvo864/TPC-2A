@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TPC_GRUPO_2A.SiteMaster" %>
+<%@ Register Src="~/Controls/Sidebar.ascx" TagPrefix="uc" TagName="Sidebar" %>
 
 <!DOCTYPE html>
 
@@ -7,19 +8,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title><%: Page.Title %> - CallCenter</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link runat="server" href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link runat="server" href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link runat="server" href="~/Content/Site.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <form runat="server" class="layout-principal">
+    <form runat="server" class="app-shell">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -39,124 +40,34 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
+        <uc:Sidebar runat="server" ID="Sidebar" />
 
-                <a class="navbar-brand" runat="server" href="~/">CallCenter</a>
-
-                <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                        <li class="nav-item">
-                            <a class="nav-link" runat="server" href="~/">Inicio</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" runat="server" href="~/Clientes">Clientes</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" runat="server" href="~/Reclamos">Reclamos</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarAdministracion"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">Administración
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" runat="server" href="~/TiposIncidencias">Tipos de Incidencias
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" runat="server" href="~/Prioridades">Prioridades
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" runat="server" href="~/Usuarios">Usuarios
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" runat="server" href="~/About">About</a>
-                        </li>
-
-                    </ul>
-
-                    <!-- BUSCADOR -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2"
-                            type="search"
-                            placeholder="Buscar"
-                            aria-label="Buscar">
-
-                        <button class="btn btn-outline-light"
-                            type="submit">
-                            Buscar
-                        </button>
-                    </form>
-
+        <main class="app-main">
+            <header class="app-topbar">
+                <div class="topbar-search">
+                    <input class="form-control"
+                        type="search"
+                        placeholder="Buscar cliente, reclamo o telefono..."
+                        aria-label="Buscar">
                 </div>
-            </div>
-        </nav>
 
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"> </asp:ContentPlaceHolder>
-        </div>
-
-        <footer class="footer" id="Nosotros">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h4>Integrantes</h4>
-                        <ul>
-                            <li>Lucio Luque</li>
-                            <li>Tomas Garcia</li>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-5">
-                        <h4>Repositorio del proyecto</h4>
-                        <ul>
-                            <li><a href="https://github.com/juancalvo864/TPC-2A.git" target="_blank" class="hover-link">Enlace al repositorio</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h4>Githubs</h4>
-                        <ul class="social-icons">
-                            <li><a href="https://github.com/LucioNiderhaus" target="_blank" class="hover-link">Github de Lucio</a></li>
-                        </ul>
+                <div class="topbar-user">
+                    <div class="user-avatar">SU</div>
+                    <div>
+                        <strong>SuperUser</strong>
+                        <span>Supervisor</span>
                     </div>
                 </div>
-            </div>
-            <div class="bottom-bar">
-                <div class="container">
-                    <p class="copyright text-center">&copy; 2026 Proyecto CallCenter. Todos los derechos reservados.</p>
-                    <a class="hover-link text-center" href="#Navbar">Volver arriba</a>
-                </div>
-            </div>
-        </footer>
+            </header>
+
+            <section class="app-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server"> </asp:ContentPlaceHolder>
+            </section>
+
+            <footer class="app-footer">
+                &copy; 2026 Proyecto CallCenter
+            </footer>
+        </main>
     </form>
-    <%--    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-    </asp:PlaceHolder>--%>
 </body>
 </html>
