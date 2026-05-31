@@ -63,8 +63,8 @@ namespace negocio
                     cliente.Id = (int)datos.Lector["id"];
                     cliente.Nombre = (string)datos.Lector["nombre"];
                     cliente.Email = (string)datos.Lector["email"];
-                    cliente.Telefono = (string)datos.Lector["telefono"];
-                    cliente.Identificacion = (string)datos.Lector["identificacion"];
+                    cliente.Telefono = datos.Lector["telefono"] == DBNull.Value ? null : (string)datos.Lector["telefono"];
+                    cliente.Identificacion = datos.Lector["identificacion"] == DBNull.Value ? null : (string)datos.Lector["identificacion"];
                     cliente.Activo = (bool)datos.Lector["activo"];
                     cliente.FechaAlta = (DateTime)datos.Lector["fecha_alta"];
 
