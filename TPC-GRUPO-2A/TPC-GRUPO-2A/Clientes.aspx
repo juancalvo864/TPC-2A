@@ -4,5 +4,6 @@
     <main>
         <h2>Página de Clientes</h2>
         <asp:GridView ID="dgvClientes" runat="server" CssClass="table"></asp:GridView>
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click" />
     </main>
 </asp:Content>

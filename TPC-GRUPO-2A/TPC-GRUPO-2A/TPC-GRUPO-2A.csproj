@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientesForm.aspx" />
     <Content Include="Controls\Header.ascx" />
     <Content Include="Controls\Footer.ascx" />
     <Content Include="Scripts\DB\SP.sql" />
@@ -197,6 +198,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientesForm.aspx.cs">
+      <DependentUpon>ClientesForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientesForm.aspx.designer.cs">
+      <DependentUpon>ClientesForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Header.ascx.cs">
       <DependentUpon>Header.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

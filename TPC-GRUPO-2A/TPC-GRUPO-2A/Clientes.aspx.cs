@@ -16,5 +16,10 @@ namespace TPC_GRUPO_2A
             dgvClientes.DataSource = negocio.listarClientesConSP();
             dgvClientes.DataBind(); 
         }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientesForm.aspx");
+        }
     }
 }
