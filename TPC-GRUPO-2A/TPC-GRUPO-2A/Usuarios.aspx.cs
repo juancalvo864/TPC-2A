@@ -13,7 +13,7 @@ namespace TPC_GRUPO_2A
         protected void Page_Load(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
-            dgvUsuarios.DataSource = negocio.listarUsuariosConSP(); 
+            dgvUsuarios.DataSource = negocio.ObtenerTodos(); 
             dgvUsuarios.DataBind(); 
         }
     }
