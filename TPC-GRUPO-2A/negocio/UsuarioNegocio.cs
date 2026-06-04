@@ -11,36 +11,32 @@ namespace negocio
 {
     public class UsuarioNegocio
     {
-
-        public List<Usuario> listarUsuariosConSP()  
+        public List<Usuario> ObtenerTodos()
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                //string consulta = @"SELECT id, nombre, email, telefono, identificacion, activo, fecha_alta FROM Usuarios";
-                //datos.setearConsulta(consulta);
-
-                datos.setearProcedimiento("SP_ListarUsuarios");
+                datos.setearConsulta("SELECT U.id, U.nombre, U.email, U.login, U.hash_password, " +
+                                     "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
+                                     "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Usuario usuario = new Usuario();
-
-                    usuario.Id = (int)datos.Lector["id"];
-                    usuario.Nombre = (string)datos.Lector["nombre"];
-                    usuario.Email = datos.Lector["email"] == DBNull.Value ? "" : (string)datos.Lector["email"];
-                    usuario.Login = (string)datos.Lector["login"];
-                    usuario.HashPassword = (string)datos.Lector["hash_password"];
-                    usuario.Activo = (bool)datos.Lector["activo"];
-                    usuario.FechaCreacion = (DateTime)datos.Lector["fecha_creacion"];
-
-                    usuario.Rol = new Rol();
-                    usuario.Rol.Id = (int)datos.Lector["rol_id"];
-
-                    lista.Add(usuario);
+                    Usuario u = new Usuario();
+                    u.Id = (int)datos.Lector["id"];
+                    u.Nombre = (string)datos.Lector["nombre"];
+                    u.Email = (string)datos.Lector["email"];
+                    u.Login = (string)datos.Lector["login"];
+                    u.HashPassword = (string)datos.Lector["hash_password"];
+                    u.Activo = (bool)datos.Lector["activo"];
+                    u.FechaCreacion = (DateTime)datos.Lector["fecha_creacion"];
+                    u.Rol = new Rol();
+                    u.Rol.Id = (int)datos.Lector["rol_id"];
+                    u.Rol.Nombre = (string)datos.Lector["rol_nombre"];
+                    lista.Add(u);
                 }
 
                 return lista;
@@ -56,30 +52,60 @@ namespace negocio
         }
 
 
-        /*
-        public void Agregar(Cliente c)
+        public void Agregar(Usuario u)
         {
-            AccesoDatos db = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                db.setearConsulta("INSERT INTO CLIENTES (nombre, email, telefono, identificacion, activo, fecha_alta) " +
-                                  "VALUES (@nombre, @email, @telefono, @identificacion, @activo, @fechaAlta)");
+                datos.setearConsulta("INSERT INTO USUARIOS (nombre, email, login, hash_password, rol_id, activo, fecha_creacion) " +
+                                     "VALUES (@nombre, @email, @login, @hashPassword, @rolId, @activo, @fechaCreacion)");
 
-                db.setearParametro("@nombre", c.Nombre);
-                db.setearParametro("@email", c.Email);
-                db.setearParametro("@telefono", (object)c.Telefono ?? DBNull.Value);
-                db.setearParametro("@identificacion", (object)c.Identificacion ?? DBNull.Value);
-                db.setearParametro("@activo", c.Activo);
-                db.setearParametro("@fechaAlta", c.FechaAlta);
+                datos.setearParametro("@nombre", u.Nombre);
+                datos.setearParametro("@email", u.Email);
+                datos.setearParametro("@login", u.Login);
+                datos.setearParametro("@hashPassword", u.HashPassword);
+                datos.setearParametro("@rolId", u.Rol.Id);
+                datos.setearParametro("@activo", u.Activo);
+                datos.setearParametro("@fechaCreacion", u.FechaCreacion);
 
-                db.ejecutarAccion();
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
-                db.cerrarConexion();
+                datos.cerrarConexion();
             }
-        }*/
+        }
 
+        public void Modificar(Usuario u)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET nombre = @nombre, email = @email, " +
+                                     "rol_id = @rolId, activo = @activo WHERE id = @id");
+
+                datos.setearParametro("@nombre", u.Nombre);
+                datos.setearParametro("@email", u.Email);
+                datos.setearParametro("@rolId", u.Rol.Id);
+                datos.setearParametro("@activo", u.Activo);
+                datos.setearParametro("@id", u.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
