@@ -102,6 +102,7 @@
     <Content Include="ClientesForm.aspx" />
     <Content Include="Controls\Header.ascx" />
     <Content Include="Controls\Footer.ascx" />
+    <Content Include="Login.aspx" />
     <Content Include="Scripts\DB\SP.sql" />
     <Content Include="TiposIncidencias.aspx" />
     <Content Include="Prioridades.aspx" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Controls\Footer.ascx.designer.cs">
       <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="TiposIncidencias.aspx.cs">
       <DependentUpon>TiposIncidencias.aspx</DependentUpon>
