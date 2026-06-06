@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,56 @@ namespace TPC_GRUPO_2A
 
         private void CargarGrilla()
         {
-            TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
-            dgvTipos.DataSource = tn.ObtenerTodos();
-            dgvTipos.DataBind();
+            try
+            {
+                TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
+                dgvTipos.DataSource = tn.ObtenerTodos();
+                dgvTipos.DataBind();
+
+            }
+            catch(Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
+        }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            pnlFormulario.Visible = true;
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TipoIncidencia t = new TipoIncidencia();
+                t.Nombre = txtNombre.Text.Trim();
+                t.Descripcion = txtDescripcion.Text.Trim();
+                t.Activo = true;
+
+                TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
+                tn.Agregar(t);
+
+                LimpiarFormulario();
+                pnlFormulario.Visible = false;
+                CargarGrilla();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            pnlFormulario.Visible = false;
+        }
+        private void LimpiarFormulario()
+        {
+            txtNombre.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
         }
     }
 }
