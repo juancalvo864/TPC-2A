@@ -2,7 +2,22 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main>
-        <h2>Página de Tipos de Incidencias</h2>
-        <p> Módulo en desarrollo.</p>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Tipos de Incidencias</h2>
+        </div>
+
+        <asp:GridView ID="dgvTipos" runat="server" CssClass="table table-bordered table-hover"
+            AutoGenerateColumns="false" DataKeyNames="Id">
+            <Columns>
+                <asp:BoundField DataField="Id" HeaderText="ID" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                <asp:TemplateField HeaderText="Estado">
+                    <ItemTemplate>
+                        <%# (bool)Eval("Activo") ? "Activo" : "Inactivo" %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </main>
 </asp:Content>

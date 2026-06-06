@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,15 @@ namespace TPC_GRUPO_2A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+                CargarGrilla();
+        }
 
+        private void CargarGrilla()
+        {
+            TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
+            dgvTipos.DataSource = tn.ObtenerTodos();
+            dgvTipos.DataBind();
         }
     }
 }
