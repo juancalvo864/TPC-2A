@@ -124,7 +124,7 @@ namespace TPC_GRUPO_2A
 
                     TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
                     TipoIncidencia t = tn.ObtenerPorId(id);
-                    t.Activo = false;
+                    t.Activo = !t.Activo;
                     tn.Modificar(t);
 
                     CargarGrilla();
