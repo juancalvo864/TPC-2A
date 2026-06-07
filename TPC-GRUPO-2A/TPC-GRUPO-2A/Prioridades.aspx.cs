@@ -31,5 +31,37 @@ namespace TPC_GRUPO_2A
                 Session.Add("Error", ex);
             }
         }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBaja_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+            lblTituloPanel.Text = "Nueva Prioridad";
+            pnlFormulario.Visible = true;
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void LimpiarFormulario()
+        {
+            txtNombre.Text = string.Empty;
+            txtNivel.Text = string.Empty;
+        }
     }
 }
