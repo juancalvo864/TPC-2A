@@ -98,6 +98,10 @@ namespace TPC_GRUPO_2A
         {
             LimpiarFormulario();
             pnlFormulario.Visible = false;
+            if (Request.QueryString["id"] != null)
+            {
+                Response.Redirect("~/Prioridades.aspx");
+            }
         }
         private void LimpiarFormulario()
         {
