@@ -41,6 +41,37 @@ namespace negocio
             }
         }
 
+        public TipoIncidencia ObtenerPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT id, nombre, descripcion, activo FROM TIPOS_INCIDENCIA WHERE id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    TipoIncidencia t = new TipoIncidencia();
+                    t.Id = (int)datos.Lector["id"];
+                    t.Nombre = (string)datos.Lector["nombre"];
+                    t.Descripcion = datos.Lector["descripcion"] == DBNull.Value ? null : (string)datos.Lector["descripcion"];
+                    t.Activo = (bool)datos.Lector["activo"];
+                    return t;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void Agregar(TipoIncidencia t)
         {
             AccesoDatos datos = new AccesoDatos();
