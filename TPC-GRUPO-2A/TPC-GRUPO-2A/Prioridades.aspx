@@ -22,7 +22,7 @@
             </div>
         </asp:Panel>
         <asp:GridView ID="dgvPrioridades" runat="server" CssClass="table table-bordered table-hover"
-            AutoGenerateColumns="false" DataKeyNames="Id">
+            AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvPrioridades_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="ID" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -35,8 +35,8 @@
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
                         <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-warning btn-sm"
-                            CommandName="Editar" OnClick="btnEditar_Click" CommandArgument='<%# Eval("Id") %>' />
-                        <asp:Button ID="btnBaja" runat="server" OnClick="btnBaja_Click"
+                            CommandName="Editar" CommandArgument='<%# Eval("Id") %>' />
+                        <asp:Button ID="btnBaja" runat="server"
                             Text='<%# (bool)Eval("Activo") ? "Dar de baja" : "Activar" %>'
                             CssClass='<%# (bool)Eval("Activo") ? "btn btn-danger btn-sm" : "btn btn-success btn-sm" %>'
                             CommandName="Baja" CommandArgument='<%# Eval("Id") %>' />
