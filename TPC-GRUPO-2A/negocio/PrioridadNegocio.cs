@@ -41,6 +41,37 @@ namespace negocio
             }
         }
 
+        public Prioridad ObtenerPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT id, nombre, nivel, activo FROM PRIORIDADES WHERE id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Prioridad p = new Prioridad();
+                    p.Id = (int)datos.Lector["id"];
+                    p.Nombre = (string)datos.Lector["nombre"];
+                    p.Nivel = (int)datos.Lector["nivel"];
+                    p.Activo = (bool)datos.Lector["activo"];
+                    return p;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void Agregar(Prioridad p)
         {
             AccesoDatos datos = new AccesoDatos();
