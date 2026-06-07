@@ -7,7 +7,7 @@
             <asp:Button ID="btnNuevo" runat="server" Text="+ Nuevo" CssClass="btn btn-primary" OnClick="btnNuevo_Click"/>
         </div>
         <asp:Panel ID="pnlFormulario" runat="server" Visible="false" CssClass="card p-3 mb-4">
-            <h5 class="mb-3">Nuevo Tipo de Incidencia</h5>
+             <asp:Label ID="lblTituloPanel" runat="server" Text="Nuevo Tipo de Incidencia" CssClass="h5 mb-3 d-block" />
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresá el nombre" />
@@ -23,7 +23,7 @@
         </asp:Panel>
 
         <asp:GridView ID="dgvTipos" runat="server" CssClass="table table-bordered table-hover"
-            AutoGenerateColumns="false" DataKeyNames="Id">
+            AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvTipos_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="ID" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -35,7 +35,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
-                        <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-warning btn-sm" />
+                        <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-warning btn-sm"
+                            CommandName="Editar" CommandArgument='<%# Eval("Id") %>' />
                         <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn btn-danger btn-sm" />
                     </ItemTemplate>
                 </asp:TemplateField>

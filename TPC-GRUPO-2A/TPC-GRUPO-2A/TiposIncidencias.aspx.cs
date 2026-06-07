@@ -14,7 +14,15 @@ namespace TPC_GRUPO_2A
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 CargarGrilla();
+
+                if (Request.QueryString["id"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["id"]);
+                    CargarFormularioEdicion(id);
+                }
+            }
         }
 
         private void CargarGrilla()
@@ -32,6 +40,23 @@ namespace TPC_GRUPO_2A
             }
         }
 
+        private void CargarFormularioEdicion(int id)
+        {
+            try
+            {
+                TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
+                TipoIncidencia t = tn.ObtenerPorId(id);
+
+                txtNombre.Text = t.Nombre;
+                txtDescripcion.Text = t.Descripcion;
+                lblTituloPanel.Text = "Editar Tipo de Incidencia";
+                pnlFormulario.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
+        }
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
@@ -48,11 +73,20 @@ namespace TPC_GRUPO_2A
                 t.Activo = true;
 
                 TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
-                tn.Agregar(t);
+
+                if (Request.QueryString["id"] != null)
+                {
+                    t.Id = int.Parse(Request.QueryString["id"]);
+                    tn.Modificar(t);
+                }
+                else
+                {
+                    tn.Agregar(t);
+                }
 
                 LimpiarFormulario();
                 pnlFormulario.Visible = false;
-                CargarGrilla();
+                Response.Redirect("~/TiposIncidencias.aspx");
             }
             catch (Exception ex)
             {
@@ -64,11 +98,24 @@ namespace TPC_GRUPO_2A
         {
             LimpiarFormulario();
             pnlFormulario.Visible = false;
+            if (Request.QueryString["id"] != null)
+            {
+                Response.Redirect("~/TiposIncidencias.aspx");
+            }
         }
         private void LimpiarFormulario()
         {
             txtNombre.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
+        }
+
+        protected void dgvTipos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Editar")
+            {
+                int id = int.Parse(e.CommandArgument.ToString());
+                Response.Redirect("~/TiposIncidencias.aspx?id=" + id);
+            }
         }
     }
 }
