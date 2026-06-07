@@ -37,7 +37,8 @@
                     <ItemTemplate>
                         <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-warning btn-sm"
                             CommandName="Editar" CommandArgument='<%# Eval("Id") %>' />
-                        <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn btn-danger btn-sm" />
+                        <asp:Button ID="btnBaja" runat="server" Text="Dar de baja" CssClass="btn btn-danger btn-sm"
+                            CommandName="Baja" CommandArgument='<%# Eval("Id") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

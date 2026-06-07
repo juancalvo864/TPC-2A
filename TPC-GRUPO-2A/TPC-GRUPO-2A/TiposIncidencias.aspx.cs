@@ -116,6 +116,24 @@ namespace TPC_GRUPO_2A
                 int id = int.Parse(e.CommandArgument.ToString());
                 Response.Redirect("~/TiposIncidencias.aspx?id=" + id);
             }
+            if (e.CommandName == "Baja")
+            {
+                try
+                {
+                    int id = int.Parse(e.CommandArgument.ToString());
+
+                    TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
+                    TipoIncidencia t = tn.ObtenerPorId(id);
+                    t.Activo = false;
+                    tn.Modificar(t);
+
+                    CargarGrilla();
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", ex);
+                }
+            }
         }
     }
 }
