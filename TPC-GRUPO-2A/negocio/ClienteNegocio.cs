@@ -83,6 +83,41 @@ namespace negocio
             }
         }
 
+        public Cliente ObtenerPorId(int id)
+        {
+            AccesoDatos db = new AccesoDatos();
+
+            try
+            {
+                db.setearConsulta("SELECT id, nombre, email, telefono, identificacion, activo, fecha_alta FROM CLIENTES WHERE id = @id");
+                db.setearParametro("@id", id);
+                db.ejecutarLectura();
+
+                if (db.Lector.Read())
+                {
+                    Cliente c = new Cliente();
+                    c.Id = (int)db.Lector["id"];
+                    c.Nombre = (string)db.Lector["nombre"];
+                    c.Email = (string)db.Lector["email"];
+                    c.Telefono = db.Lector["telefono"] == DBNull.Value ? null : (string)db.Lector["telefono"];
+                    c.Identificacion = db.Lector["identificacion"] == DBNull.Value ? null : (string)db.Lector["identificacion"];
+                    c.Activo = (bool)db.Lector["activo"];
+                    c.FechaAlta = (DateTime)db.Lector["fecha_alta"];
+                    return c;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                db.cerrarConexion();
+            }
+        }
+
         public void Agregar(Cliente c)
         {
             AccesoDatos db = new AccesoDatos();
@@ -100,6 +135,39 @@ namespace negocio
                 db.setearParametro("@fechaAlta", c.FechaAlta);
 
                 db.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                db.cerrarConexion();
+            }
+        }
+
+        public void Modificar(Cliente c)
+        {
+            AccesoDatos db = new AccesoDatos();
+
+            try
+            {
+                db.setearConsulta("UPDATE CLIENTES SET nombre = @nombre, email = @email, " +
+                                  "telefono = @telefono, identificacion = @identificacion, " +
+                                  "activo = @activo WHERE id = @id");
+
+                db.setearParametro("@nombre", c.Nombre);
+                db.setearParametro("@email", c.Email);
+                db.setearParametro("@telefono", (object)c.Telefono ?? DBNull.Value);
+                db.setearParametro("@identificacion", (object)c.Identificacion ?? DBNull.Value);
+                db.setearParametro("@activo", c.Activo);
+                db.setearParametro("@id", c.Id);
+
+                db.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
