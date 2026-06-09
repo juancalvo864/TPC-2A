@@ -39,9 +39,9 @@
                         <asp:TextBox ID="txtFechaAlta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                     </div>
 
+                    <asp:Panel ID="pnlActivo" runat="server" Visible="true">
                     <div class="col-md-6 mb-3">
                         <label class="form-label d-block">Estado</label>
-
                         <div class="form-check">
                             <asp:CheckBox ID="chkActivo" runat="server" Checked="true" />
                             <label class="form-check-label ms-2" for="chkActivo">
@@ -49,6 +49,7 @@
                             </label>
                         </div>
                     </div>
+                    </asp:Panel>
 
                 </div>
 

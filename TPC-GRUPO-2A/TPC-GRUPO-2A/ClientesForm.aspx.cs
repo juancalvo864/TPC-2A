@@ -13,16 +13,48 @@ namespace TPC_GRUPO_2A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+                txtFechaAlta.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+
+                if (Request.QueryString["id"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["id"]);
+                    pnlActivo.Visible=false;
+                    txtFechaAlta.Enabled = false;
+                    CargarFormularioEdicion(id);
+                }
+            }
         }
 
+        private void CargarFormularioEdicion(int id)
+        {
+            try
+            {
+                ClienteNegocio cn = new ClienteNegocio();
+                Cliente c = cn.ObtenerPorId(id);
+
+                txtNombre.Text = c.Nombre;
+                txtApellido.Text = c.Apellido;
+                txtEmail.Text = c.Email;
+                txtTelefono.Text = c.Telefono;
+                txtIdentificacion.Text = c.Identificacion;
+                txtFechaAlta.Text = c.FechaAlta.ToString("yyyy-MM-dd");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
+        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
                 Cliente c = new Cliente();
                 c.Nombre = txtNombre.Text.Trim();
-                c.Apellido = txtNombre.Text.Trim();
+                c.Apellido = txtApellido.Text.Trim();
                 c.Email = txtEmail.Text.Trim();
                 c.Telefono = txtTelefono.Text.Trim();
                 c.Identificacion = txtIdentificacion.Text.Trim();
@@ -30,8 +62,17 @@ namespace TPC_GRUPO_2A
                 c.Activo = chkActivo.Checked;
 
                 ClienteNegocio cn = new ClienteNegocio();
-                cn.Agregar(c);
-               
+
+                if (Request.QueryString["id"] != null)
+                {
+                    c.Id = int.Parse(Request.QueryString["id"]);
+                    cn.Modificar(c);
+                }
+                else
+                {
+                    cn.Agregar(c);
+                }
+
                 Response.Redirect("~/Clientes.aspx");
             }
             catch (Exception ex)

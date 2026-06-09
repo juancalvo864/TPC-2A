@@ -69,6 +69,15 @@ namespace TPC_GRUPO_2A
         protected global::System.Web.UI.WebControls.TextBox txtFechaAlta;
 
         /// <summary>
+        /// Control pnlActivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActivo;
+
+        /// <summary>
         /// Control chkActivo.
         /// </summary>
         /// <remarks>
