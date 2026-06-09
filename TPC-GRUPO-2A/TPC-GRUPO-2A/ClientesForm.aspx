@@ -15,6 +15,11 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
+                        <label class="form-label">Apellido</label>
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Email</label>
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                     </div>

@@ -22,6 +22,7 @@ namespace TPC_GRUPO_2A
             {
                 Cliente c = new Cliente();
                 c.Nombre = txtNombre.Text.Trim();
+                c.Apellido = txtNombre.Text.Trim();
                 c.Email = txtEmail.Text.Trim();
                 c.Telefono = txtTelefono.Text.Trim();
                 c.Identificacion = txtIdentificacion.Text.Trim();
