@@ -51,10 +51,10 @@
 
                 <div class="d-flex gap-2">
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar"
-                        CssClass="btn btn-primary" />
+                        CssClass="btn btn-primary" OnClick="btnGuardar_Click"/>
 
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"
-                        CssClass="btn btn-secondary" />
+                        CssClass="btn btn-secondary" OnClick="btnCancelar_Click"/>
                 </div>
 
             </div>
