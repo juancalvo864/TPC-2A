@@ -33,13 +33,18 @@ namespace negocio
                     c.FechaAlta = db.Lector.GetDateTime(6);
                     clientes.Add(c);
                 }
+            return clientes;
+           
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             finally
             {
                 db.cerrarConexion();
             }
 
-            return clientes;
         }
 
 
