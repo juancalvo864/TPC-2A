@@ -15,6 +15,11 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
+                        <label class="form-label">Apellido</label>
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Email</label>
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                     </div>
@@ -34,9 +39,9 @@
                         <asp:TextBox ID="txtFechaAlta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                     </div>
 
+                    <asp:Panel ID="pnlActivo" runat="server" Visible="true">
                     <div class="col-md-6 mb-3">
                         <label class="form-label d-block">Estado</label>
-
                         <div class="form-check">
                             <asp:CheckBox ID="chkActivo" runat="server" Checked="true" />
                             <label class="form-check-label ms-2" for="chkActivo">
@@ -44,6 +49,7 @@
                             </label>
                         </div>
                     </div>
+                    </asp:Panel>
 
                 </div>
 
@@ -51,10 +57,10 @@
 
                 <div class="d-flex gap-2">
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar"
-                        CssClass="btn btn-primary" />
+                        CssClass="btn btn-primary" OnClick="btnGuardar_Click"/>
 
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"
-                        CssClass="btn btn-secondary" />
+                        CssClass="btn btn-secondary" OnClick="btnCancelar_Click"/>
                 </div>
 
             </div>
