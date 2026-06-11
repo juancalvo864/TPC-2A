@@ -35,6 +35,7 @@ namespace TPC_GRUPO_2A
                 txtEmail.Text = u.Email;
                 txtRol.Text = u.Rol.Nombre;
                 txtFechaCreacion.Text = u.FechaCreacion.ToString("dd/MM/yyyy");
+                pnlError.Visible = false;
             }
             catch (Exception ex)
             {
@@ -64,6 +65,7 @@ namespace TPC_GRUPO_2A
                 {
                     if (txtNuevaPassword.Text != txtConfirmarPassword.Text)
                     {
+                        MostrarError("Las contraseñas no coinciden.");
                         return;
                     }
                     u.HashPassword = txtNuevaPassword.Text;
@@ -97,5 +99,12 @@ namespace TPC_GRUPO_2A
             btnCancelar.Visible = false;
             CargarDatos();
         }
+
+        private void MostrarError(string mensaje)
+        {
+            litError.Text = mensaje;
+            pnlError.Visible = true;
+        }
+
     }
 }

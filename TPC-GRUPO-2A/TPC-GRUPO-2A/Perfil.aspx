@@ -1,5 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="TPC_GRUPO_2A.Perfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <head>
+        <style>
+            .error-msg {
+                background: #fef2f2;
+                border: 1px solid #fecaca;
+                color: #dc2626;
+                border-radius: 8px;
+                padding: 10px 14px;
+                font-size: 13px;
+                margin-bottom: 18px;
+            }
+        </style>
+    </head>
     <div class="container mt-4">
             <h2 class="mb-4">Mi perfil</h2>
             <div class="card shadow-sm">
@@ -30,6 +43,10 @@
                     <asp:Panel ID="pnlPassword" runat="server" Visible="false">
                         <hr />
                         <h5 class="mb-3">Cambiar contraseña</h5>
+                        <asp:Panel ID="pnlError" runat="server" Visible="false" CssClass="error-msg">
+                        <i class="bi bi-exclamation-circle me-1"></i>
+                        <asp:Literal ID="litError" runat="server" />
+                        </asp:Panel>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Nueva contraseña</label>
