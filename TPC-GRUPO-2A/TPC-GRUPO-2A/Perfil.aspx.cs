@@ -45,6 +45,7 @@ namespace TPC_GRUPO_2A
         {
             txtNombre.Enabled = true;
             txtApellido.Enabled = true;
+            pnlPassword.Visible = true;
             btnEditar.Visible = false;
             btnGuardar.Visible = true;
             btnCancelar.Visible = true;
@@ -59,6 +60,7 @@ namespace TPC_GRUPO_2A
         {
             txtNombre.Enabled = false;
             txtApellido.Enabled = false;
+            pnlPassword.Visible = false;
             btnEditar.Visible = true;
             btnGuardar.Visible = false;
             btnCancelar.Visible = false;

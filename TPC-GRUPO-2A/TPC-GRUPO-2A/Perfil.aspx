@@ -27,6 +27,21 @@
                             <asp:TextBox ID="txtFechaCreacion" runat="server" CssClass="form-control" Enabled="false" />
                         </div>
                     </div>
+                    <asp:Panel ID="pnlPassword" runat="server" Visible="false">
+                        <hr />
+                        <h5 class="mb-3">Cambiar contraseña</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nueva contraseña</label>
+                                <asp:TextBox ID="txtNuevaPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Confirmar contraseña</label>
+                                <asp:TextBox ID="txtConfirmarPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                            </div>
+                        </div>
+                    </asp:Panel>
+
                     <hr />
                     <div class="d-flex gap-2">
                         <asp:Button ID="btnEditar" runat="server" Text="Editar perfil" CssClass="btn btn-primary" OnClick="btnEditar_Click"/>
