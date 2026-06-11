@@ -18,5 +18,11 @@ namespace TPC_GRUPO_2A.Controls
                                     (string.IsNullOrEmpty(u.Apellido) ? "" : u.Apellido.Substring(0, 1).ToUpper());
             }
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("~/Login.aspx");
+        }
     }
 }

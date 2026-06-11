@@ -18,5 +18,6 @@
                 <strong><asp:Label ID="lblNombre" runat="server" /></strong>
                 <span><asp:Label ID="lblRol" runat="server" /></span>
             </div>
+        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar sesión" CssClass="btn btn-sm btn-outline-danger ms-3" OnClick="btnCerrarSesion_Click" />
     </div>
 </header>
