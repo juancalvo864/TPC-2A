@@ -40,5 +40,29 @@ namespace TPC_GRUPO_2A
                 Session.Add("Error", ex);
             }
         }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Enabled = true;
+            txtApellido.Enabled = true;
+            btnEditar.Visible = false;
+            btnGuardar.Visible = true;
+            btnCancelar.Visible = true;
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            btnEditar.Visible = true;
+            btnGuardar.Visible = false;
+            btnCancelar.Visible = false;
+            CargarDatos();
+        }
     }
 }

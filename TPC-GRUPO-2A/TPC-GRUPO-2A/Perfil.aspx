@@ -29,9 +29,9 @@
                     </div>
                     <hr />
                     <div class="d-flex gap-2">
-                        <asp:Button ID="btnEditar" runat="server" Text="Editar perfil" CssClass="btn btn-primary" />
-                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar cambios" CssClass="btn btn-success" Visible="false" />
-                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" Visible="false" />
+                        <asp:Button ID="btnEditar" runat="server" Text="Editar perfil" CssClass="btn btn-primary" OnClick="btnEditar_Click"/>
+                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar cambios" CssClass="btn btn-success" Visible="false" OnClick="btnGuardar_Click"/>
+                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" Visible="false" OnClick="btnCancelar_Click"/>
                     </div>
                 </div>
             </div>
