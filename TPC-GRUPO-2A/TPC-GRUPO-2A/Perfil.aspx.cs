@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace TPC_GRUPO_2A
         {
             if (Session["usuario"] == null)
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Login.aspx",false);
                 return;
             }
 
@@ -53,7 +54,37 @@ namespace TPC_GRUPO_2A
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Usuario u = (Usuario)Session["usuario"];
+                u.Nombre = txtNombre.Text.Trim();
+                u.Apellido = txtApellido.Text.Trim();
 
+                if (!string.IsNullOrEmpty(txtNuevaPassword.Text))
+                {
+                    if (txtNuevaPassword.Text != txtConfirmarPassword.Text)
+                    {
+                        return;
+                    }
+                    u.HashPassword = txtNuevaPassword.Text;
+                }
+
+                UsuarioNegocio un = new UsuarioNegocio();
+                un.Modificar(u);
+
+                Session["usuario"] = u;
+
+                txtNombre.Enabled = false;
+                txtApellido.Enabled = false;
+                pnlPassword.Visible = false;
+                btnEditar.Visible = true;
+                btnGuardar.Visible = false;
+                btnCancelar.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
