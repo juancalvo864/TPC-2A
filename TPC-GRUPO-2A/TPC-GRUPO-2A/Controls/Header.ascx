@@ -8,11 +8,15 @@
             aria-label="Buscar">
     </div>
 
-    <div class="topbar-user">
-        <div class="user-avatar">SU</div>
-        <div>
-            <strong>SuperUser</strong>
-            <span>Supervisor</span>
+     <div class="topbar-user">
+        <a href="Perfil.aspx" class="text-muted small text-decoration-none">
+        <div class="user-avatar">
+            <asp:Label ID="lblIniciales" runat="server" />
         </div>
+        </a>
+            <div>
+                <strong><asp:Label ID="lblNombre" runat="server" /></strong>
+                <span><asp:Label ID="lblRol" runat="server" /></span>
+            </div>
     </div>
 </header>
