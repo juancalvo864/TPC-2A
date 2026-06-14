@@ -18,7 +18,7 @@ namespace negocio
                 datos.setearConsulta("SELECT U.id, U.nombre, U.apellido, U.email, U.login, U.hash_password, " +
                                      "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
                                      "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id " +
-                                     "WHERE U.login = @login AND U.hash_password = @password AND U.activo = 1");
+                                     "WHERE U.email = @login AND U.hash_password = @password AND U.activo = 1");
 
                 datos.setearParametro("@login", login);
                 datos.setearParametro("@password", password);

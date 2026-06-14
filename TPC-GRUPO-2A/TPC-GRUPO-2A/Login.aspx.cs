@@ -21,7 +21,7 @@ namespace TPC_GRUPO_2A
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            string login = txtLogin.Text;
+            string login = txtLogin.Text.Trim();
             string password = txtPassword.Text;
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))

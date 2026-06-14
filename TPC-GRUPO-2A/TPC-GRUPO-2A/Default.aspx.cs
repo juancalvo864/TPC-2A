@@ -16,6 +16,13 @@ namespace TPC_GRUPO_2A
             if (!IsPostBack)
             {
                 Usuario u = (Usuario)Session["usuario"];
+
+                if (u == null)
+                {
+                    Response.Redirect("Login.aspx");
+                    return;
+                }
+                
                 lblNombreUsuario.Text = u.Nombre + " " + u.Apellido;
             }
 

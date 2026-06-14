@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientesForm.aspx" />
+    <Content Include="Content\pages css\loginStyle.css" />
     <Content Include="Controls\Header.ascx" />
     <Content Include="Controls\Footer.ascx" />
     <Content Include="Login.aspx" />

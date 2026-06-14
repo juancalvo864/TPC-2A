@@ -11,7 +11,7 @@
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                 <asp:BoundField DataField="Email" HeaderText="Email" />
                 <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
-                <asp:BoundField DataField="Identificacion" HeaderText="Identificación" />
+                <asp:BoundField DataField="Identificacion" HeaderText="Dni" />
                 <asp:TemplateField HeaderText="Fecha Alta">
                     <ItemTemplate>
                         <%# Eval("FechaAlta", "{0:dd/MM/yyyy}") %>

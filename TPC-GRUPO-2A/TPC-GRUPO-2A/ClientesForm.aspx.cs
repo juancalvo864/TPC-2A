@@ -52,6 +52,10 @@ namespace TPC_GRUPO_2A
         {
             try
             {
+                Page.Validate("Cliente");
+
+                if (!Page.IsValid) return;
+
                 Cliente c = new Cliente();
                 c.Nombre = txtNombre.Text.Trim();
                 c.Apellido = txtApellido.Text.Trim();
