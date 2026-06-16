@@ -9,15 +9,31 @@
     </div>
 
      <div class="topbar-user">
-        <a href="Perfil.aspx" class="text-muted small text-decoration-none">
-        <div class="user-avatar">
-            <asp:Label ID="lblIniciales" runat="server" />
-        </div>
-        </a>
-            <div>
+        <a href="Perfil.aspx" class="text-muted small text-decoration-none"/>
+        <div class="dropdown">
+            <a class="text-muted small text-decoration-none dropdown-toggle d-flex justify-content-between align-items-center gap-2" href="Perfil.aspx" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+             <div class="user-avatar">
+                <asp:Label ID="lblIniciales" runat="server" />
+             </div>
+             <div>
                 <strong><asp:Label ID="lblNombre" runat="server" /></strong>
                 <span><asp:Label ID="lblRol" runat="server" /></span>
-            </div>
-        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar sesión" CssClass="btn btn-sm btn-outline-danger ms-3" OnClick="btnCerrarSesion_Click" />
+             </div>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="Perfil.aspx">Perfil</a></li>
+            <li>
+                <asp:LinkButton 
+                    ID="btnCerrarSesion"
+                    runat="server"
+                    CssClass="dropdown-item text-danger"
+                    OnClick="btnCerrarSesion_Click">
+                    Cerrar sesión 
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                </asp:LinkButton>
+            </li>
+            </ul>
+        </div>
     </div>
 </header>
