@@ -25,6 +25,11 @@ namespace TPC_GRUPO_2A
             }
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TiposIncidenciasForm.aspx");
+        }
+
         private void CargarGrilla()
         {
             try

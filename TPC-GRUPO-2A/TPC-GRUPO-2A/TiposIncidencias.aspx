@@ -45,5 +45,7 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-success" OnClick="btnAgregar_Click" />
+
     </main>
 </asp:Content>
