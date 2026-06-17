@@ -26,8 +26,7 @@ namespace negocio
                     Cliente c = new Cliente();
                     c.Id = db.Lector.GetInt32(0);
                     c.Nombre = db.Lector.GetString(1);
-                    c.Apellido = db.Lector.GetString(2);
-                    c.Email = db.Lector.GetString(3);
+                    c.Apellido = db.Lector.IsDBNull(2) ? null : db.Lector.GetString(2); c.Email = db.Lector.GetString(3);
                     c.Telefono = db.Lector.IsDBNull(4) ? null : db.Lector.GetString(4);
                     c.Identificacion = db.Lector.IsDBNull(5) ? null : db.Lector.GetString(5);
                     c.Activo = db.Lector.GetBoolean(6);
