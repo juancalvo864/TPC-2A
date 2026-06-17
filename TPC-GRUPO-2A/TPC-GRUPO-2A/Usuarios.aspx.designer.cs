@@ -13,9 +13,8 @@ namespace TPC_GRUPO_2A
 
     public partial class Usuarios
     {
+        protected global::System.Web.UI.WebControls.GridView dgvUsuarios;
 
         protected global::System.Web.UI.WebControls.Button btnAgregar;
-
-        protected global::System.Web.UI.WebControls.GridView dgvUsuarios;
     }
 }

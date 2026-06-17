@@ -2,7 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-4">
-        <h2 class="mb-4">Alta de Usuario</h2>
+        <h2 class="mb-4">
+            <asp:Label ID="lblTitulo" runat="server" Text="Alta de Usuario" />
+        </h2>
 
         <asp:ValidationSummary
             ID="vsErrores"
@@ -37,6 +39,7 @@
                         <label class="form-label">Contrasena</label>
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" />
                         <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="La contrasena es obligatoria." CssClass="text-danger small" Display="Dynamic" ValidationGroup="Usuario" />
+                        <asp:Label ID="lblPasswordAyuda" runat="server" CssClass="form-text text-muted" />
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -58,9 +61,30 @@
 
                 <div class="d-flex gap-2">
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" ValidationGroup="Usuario" />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" OnClientClick="confirmarEliminacion(this); return false;" CausesValidation="false" Visible="false" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" CausesValidation="false" />
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmarEliminacion(button) {
+            Swal.fire({
+                title: '\u00BFEliminar usuario?',
+                text: 'Esta accion no se puede deshacer.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#dc3545',
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    __doPostBack(button.name, '');
+                }
+            });
+        }
+    </script>
 </asp:Content>

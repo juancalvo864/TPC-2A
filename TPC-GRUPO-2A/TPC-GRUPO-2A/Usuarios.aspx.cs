@@ -27,6 +27,15 @@ namespace TPC_GRUPO_2A
             Response.Redirect("UsuariosForm.aspx");
         }
 
+        protected void dgvUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Editar")
+            {
+                int id = int.Parse(e.CommandArgument.ToString());
+                Response.Redirect("~/UsuariosForm.aspx?id=" + id);
+            }
+        }
+
         protected void chkActivo_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox chkActivo = (CheckBox)sender;
