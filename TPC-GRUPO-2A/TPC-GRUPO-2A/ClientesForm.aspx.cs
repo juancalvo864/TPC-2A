@@ -77,11 +77,13 @@ namespace TPC_GRUPO_2A
                     cn.Agregar(c);
                 }
 
-                Response.Redirect("~/Clientes.aspx");
+                Response.Redirect("~/Clientes.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
+                Response.Redirect("~/Error.aspx", false);
             }
         }
 
