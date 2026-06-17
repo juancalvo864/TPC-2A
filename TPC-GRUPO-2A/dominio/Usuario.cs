@@ -7,16 +7,18 @@ namespace dominio
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string Email { get; set; }
         public string Login { get; set; }
         public string HashPassword { get; set; }
         public bool Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public List<UsuarioRol> Roles { get; set; }
+        public Rol Rol { get; set; }
 
         public Usuario()
         {
-            Roles = new List<UsuarioRol>();
+            FechaCreacion = DateTime.Now;
+            Activo = true;
         }
     }
 }
