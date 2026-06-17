@@ -132,11 +132,6 @@
                                     CssClass="btn-login" 
                                     OnClick="btnIngresar_Click" />
 
-                                <div class="register-box">
-                                    <span>¿No tenés cuenta?</span>
-                                    <a href="<%= ResolveUrl("~/Registro.aspx") %>">Crear una cuenta</a>
-                                </div>
-
                             </div>
                         </div>
 
