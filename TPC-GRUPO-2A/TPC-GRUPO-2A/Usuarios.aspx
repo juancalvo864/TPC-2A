@@ -8,7 +8,8 @@
             runat="server"
             CssClass="table table-bordered table-hover"
             AutoGenerateColumns="false"
-            DataKeyNames="Id">
+            DataKeyNames="Id"
+            OnRowCommand="dgvUsuarios_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="ID" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -28,6 +29,17 @@
                             Checked='<%# Eval("Activo") %>'
                             AutoPostBack="true"
                             OnCheckedChanged="chkActivo_CheckedChanged" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Acciones">
+                    <ItemTemplate>
+                        <asp:Button
+                            ID="btnEditar"
+                            runat="server"
+                            Text="Editar"
+                            CssClass="btn btn-warning btn-sm"
+                            CommandName="Editar"
+                            CommandArgument='<%# Eval("Id") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
