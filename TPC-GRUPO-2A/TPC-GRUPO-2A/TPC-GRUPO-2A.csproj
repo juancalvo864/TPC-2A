@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientesForm.aspx" />
+    <Content Include="UsuariosForm.aspx" />
     <Content Include="Content\pages css\loginStyle.css" />
     <Content Include="Controls\Header.ascx" />
     <Content Include="Controls\Footer.ascx" />
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="ClientesForm.aspx.designer.cs">
       <DependentUpon>ClientesForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosForm.aspx.cs">
+      <DependentUpon>UsuariosForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuariosForm.aspx.designer.cs">
+      <DependentUpon>UsuariosForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controls\Header.ascx.cs">
       <DependentUpon>Header.ascx</DependentUpon>
