@@ -32,7 +32,7 @@ namespace TPC_GRUPO_2A
                 PrioridadNegocio pn = new PrioridadNegocio();
                 List<Prioridad> lista = pn.ObtenerTodos();
                 Session["prioridades"] = lista;
-                dgvPrioridades.DataSource = lista;
+                dgvPrioridades.DataSource = lista.FindAll(p => p.Activo);
                 dgvPrioridades.DataBind();
             }
             catch (Exception ex)
@@ -142,9 +142,12 @@ namespace TPC_GRUPO_2A
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             List<Prioridad> lista = (List<Prioridad>)Session["prioridades"];
+            string busqueda = txtBuscar.Text.ToUpper();
+            string estado = ddlEstado.SelectedValue;
 
             List<Prioridad> listaFiltrada = lista.FindAll(p =>
-                p.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper())
+                p.Nombre.ToUpper().Contains(busqueda) &&
+                (estado == "todos" || (estado == "activo" ? p.Activo : !p.Activo))
             );
 
             dgvPrioridades.DataSource = listaFiltrada;
@@ -154,8 +157,7 @@ namespace TPC_GRUPO_2A
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtBuscar.Text = string.Empty;
-            dgvPrioridades.DataSource = (List<Prioridad>)Session["prioridades"];
-            dgvPrioridades.DataBind();
+            CargarGrilla();
         }
     }
 }
