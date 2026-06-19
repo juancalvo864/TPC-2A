@@ -6,6 +6,11 @@
             <h2>Prioridades</h2>
             <asp:Button ID="btnNuevo" runat="server" Text="+ Nuevo" CssClass="btn btn-primary" OnClick="btnNuevo_Click"/>
         </div>
+        <div class="d-flex gap-2 mb-3">
+            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre" style="max-width:300px;" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnFiltrar_Click"/>
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" OnClick="btnLimpiar_Click"/>
+        </div>
         <asp:Panel ID="pnlFormulario" runat="server" Visible="false" CssClass="card p-3 mb-4">
             <asp:Label ID="lblTituloPanel" runat="server" Text="Nueva Prioridad" CssClass="h5 mb-3 d-block" />
             <div class="mb-3">
