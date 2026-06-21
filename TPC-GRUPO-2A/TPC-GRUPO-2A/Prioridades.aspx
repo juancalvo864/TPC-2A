@@ -31,29 +31,33 @@
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click"/>
             </div>
         </asp:Panel>
-        <asp:GridView ID="dgvPrioridades" runat="server" CssClass="table table-bordered table-hover"
-            AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvPrioridades_RowCommand">
-            <Columns>
-                <asp:BoundField DataField="Id" HeaderText="ID" />
-                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                <asp:BoundField DataField="Nivel" HeaderText="Nivel" />
-                <asp:TemplateField HeaderText="Estado">
-                    <ItemTemplate>
-                        <%# (bool)Eval("Activo") ? "Activo" : "Inactivo" %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Acciones">
-                    <ItemTemplate>
-                        <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-warning btn-sm"
-                            CommandName="Editar" CommandArgument='<%# Eval("Id") %>' />
-                        <asp:Button ID="btnBaja" runat="server"
-                            Text='<%# (bool)Eval("Activo") ? "Dar de baja" : "Activar" %>'
-                            CssClass='<%# (bool)Eval("Activo") ? "btn btn-danger btn-sm" : "btn btn-success btn-sm" %>'
-                            CommandName="Baja" CommandArgument='<%# Eval("Id") %>'
-                            OnClientClick='<%# (bool)Eval("Activo") ? "return confirm(\"¿Estás seguro que querés dar de baja este registro?\");" : "return confirm(\"¿Estás seguro que querés activar este registro?\");" %>' />
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+         <div class="card shadow-sm">
+             <div class="card-body">
+                 <asp:GridView ID="dgvPrioridades" runat="server" CssClass="table table-bordered table-hover"
+                     AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvPrioridades_RowCommand">
+                     <Columns>
+                         <asp:BoundField DataField="Id" HeaderText="ID" />
+                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                         <asp:BoundField DataField="Nivel" HeaderText="Nivel" />
+                         <asp:TemplateField HeaderText="Estado">
+                             <ItemTemplate>
+                                 <%# (bool)Eval("Activo") ? "Activo" : "Inactivo" %>
+                             </ItemTemplate>
+                         </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Acciones">
+                             <ItemTemplate>
+                                 <asp:Button ID="btnEditar" runat="server" Text="Editar" CssClass="btn btn-warning btn-sm"
+                                     CommandName="Editar" CommandArgument='<%# Eval("Id") %>' />
+                                 <asp:Button ID="btnBaja" runat="server"
+                                     Text='<%# (bool)Eval("Activo") ? "Dar de baja" : "Activar" %>'
+                                     CssClass='<%# (bool)Eval("Activo") ? "btn btn-danger btn-sm" : "btn btn-success btn-sm" %>'
+                                     CommandName="Baja" CommandArgument='<%# Eval("Id") %>'
+                                     OnClientClick='<%# (bool)Eval("Activo") ? "return confirm(\"¿Estás seguro que querés dar de baja este registro?\");" : "return confirm(\"¿Estás seguro que querés activar este registro?\");" %>' />
+                             </ItemTemplate>
+                         </asp:TemplateField>
+                     </Columns>
+                 </asp:GridView>
+             </div>
+         </div>
     </main>
 </asp:Content>
