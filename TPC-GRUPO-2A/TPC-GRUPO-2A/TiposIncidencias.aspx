@@ -12,9 +12,9 @@
                 <asp:ListItem Value="inactivo" Text="Inactivos" />
                 <asp:ListItem Value="todos" Text="Todos" />
             </asp:DropDownList>
-            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre" style="max-width:300px;" />
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" />
-            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" />
+            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre/descripción" style="max-width:300px;" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnFiltrar_Click"/>
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" OnClick="btnLimpiar_Click"/>
         </div>
         <asp:Panel ID="pnlFormulario" runat="server" Visible="false" CssClass="card p-3 mb-4">
              <asp:Label ID="lblTituloPanel" runat="server" Text="Nuevo Tipo de Incidencia" CssClass="h5 mb-3 d-block" />

@@ -31,7 +31,9 @@ namespace TPC_GRUPO_2A
             try
             {
                 TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
-                dgvTipos.DataSource = tn.ObtenerTodos();
+                List<TipoIncidencia> lista = tn.ObtenerTodos();
+                Session["tiposIncidencia"] = lista;
+                dgvTipos.DataSource = lista.FindAll(t => t.Activo);
                 dgvTipos.DataBind();
 
             }
@@ -135,6 +137,27 @@ namespace TPC_GRUPO_2A
                     Session.Add("Error", ex);
                 }
             }
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<TipoIncidencia> lista = (List<TipoIncidencia>)Session["tiposIncidencia"];
+            string busqueda = txtBuscar.Text.ToUpper();
+            string estado = ddlEstado.SelectedValue;
+
+            List<TipoIncidencia> listaFiltrada = lista.FindAll(t =>
+            (t.Nombre.ToUpper().Contains(busqueda) ||
+            (t.Descripcion != null && t.Descripcion.ToUpper().Contains(busqueda))) &&
+            (estado == "todos" || (estado == "activo" ? t.Activo : !t.Activo)));
+
+            dgvTipos.DataSource = listaFiltrada;
+            dgvTipos.DataBind();
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Text = string.Empty;
+            CargarGrilla();
         }
     }
 }
