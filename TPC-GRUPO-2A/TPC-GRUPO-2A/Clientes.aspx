@@ -10,8 +10,8 @@
                 <asp:ListItem Value="todos" Text="Todos" />
             </asp:DropDownList>
             <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre o email " style="max-width:300px;" />
-            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" />
-            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnFiltrar_Click"/>
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" OnClick="btnLimpiar_Click"/>
         </div>
          <asp:GridView ID="dgvClientes" runat="server" CssClass="table table-bordered table-hover"
             AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvClientes_RowCommand">
