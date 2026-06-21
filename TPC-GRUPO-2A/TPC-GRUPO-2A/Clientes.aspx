@@ -3,6 +3,16 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main>
         <h2>Página de Clientes</h2>
+        <div class="d-flex gap-2 mb-3">
+            <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select" style="max-width:160px;">
+                <asp:ListItem Value="activo" Text="Activos" Selected="True" />
+                <asp:ListItem Value="inactivo" Text="Inactivos" />
+                <asp:ListItem Value="todos" Text="Todos" />
+            </asp:DropDownList>
+            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre o email " style="max-width:300px;" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" />
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" />
+        </div>
          <asp:GridView ID="dgvClientes" runat="server" CssClass="table table-bordered table-hover"
             AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvClientes_RowCommand">
             <Columns>
