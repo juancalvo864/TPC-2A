@@ -29,7 +29,9 @@ namespace TPC_GRUPO_2A
             try
             {
                 ClienteNegocio cn = new ClienteNegocio();
-                dgvClientes.DataSource = cn.ObtenerTodos();
+                List<Cliente> lista = cn.ObtenerTodos();
+                Session["clientes"] = lista;
+                dgvClientes.DataSource = lista.FindAll(c => c.Activo);
                 dgvClientes.DataBind();
             }
             catch (Exception ex)
@@ -63,6 +65,27 @@ namespace TPC_GRUPO_2A
                     Session.Add("Error", ex);
                 }
             }
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Cliente> lista = (List<Cliente>)Session["clientes"];
+            string busqueda = txtBuscar.Text.ToUpper();
+            string estado = ddlEstado.SelectedValue;
+
+            List<Cliente> listaFiltrada = lista.FindAll(c =>
+                (c.Nombre.ToUpper().Contains(busqueda) ||
+                 c.Email.ToUpper().Contains(busqueda)) &&
+                (estado == "todos" || (estado == "activo" ? c.Activo : !c.Activo)));
+
+            dgvClientes.DataSource = listaFiltrada;
+            dgvClientes.DataBind();
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Text = string.Empty;
+            CargarGrilla();
         }
     }
 }

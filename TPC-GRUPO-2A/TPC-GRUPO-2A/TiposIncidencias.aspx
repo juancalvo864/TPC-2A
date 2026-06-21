@@ -6,6 +6,16 @@
             <h2>Tipos de Incidencias</h2>
             <asp:Button ID="btnNuevo" runat="server" Text="+ Nuevo" CssClass="btn btn-primary" OnClick="btnNuevo_Click"/>
         </div>
+        <div class="d-flex gap-2 mb-3">
+            <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select" style="max-width:160px;">
+                <asp:ListItem Value="activo" Text="Activos" Selected="True" />
+                <asp:ListItem Value="inactivo" Text="Inactivos" />
+                <asp:ListItem Value="todos" Text="Todos" />
+            </asp:DropDownList>
+            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre/descripción" style="max-width:300px;" />
+            <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnFiltrar_Click"/>
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-outline-danger" OnClick="btnLimpiar_Click"/>
+        </div>
         <asp:Panel ID="pnlFormulario" runat="server" Visible="false" CssClass="card p-3 mb-4">
              <asp:Label ID="lblTituloPanel" runat="server" Text="Nuevo Tipo de Incidencia" CssClass="h5 mb-3 d-block" />
             <div class="mb-3">
