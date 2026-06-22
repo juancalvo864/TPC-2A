@@ -1,5 +1,8 @@
+using dominio;
 using negocio;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,10 +21,14 @@ namespace TPC_GRUPO_2A
         private void CargarGrilla()
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
-            dgvUsuarios.DataSource = negocio.ObtenerTodos();
+            List<Usuario> listaUsuarios = negocio.ObtenerTodos();
+            Session["usuarios"] = listaUsuarios;
+
+            dgvUsuarios.DataSource = listaUsuarios.FindAll(t => t.Activo);
             dgvUsuarios.DataBind();
         }
-
+        
+        
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("UsuariosForm.aspx");
@@ -50,6 +57,27 @@ namespace TPC_GRUPO_2A
 
             usuario.Activo = chkActivo.Checked;
             negocio.Modificar(usuario);
+            CargarGrilla();
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            List<Usuario> listaUsuarios = (List<Usuario>)Session["usuarios"];
+            string busqueda = txtBuscar.Text.ToUpper();
+            string estado = ddlEstado.SelectedValue;
+
+            List<Usuario> listaFiltrada = listaUsuarios.FindAll(c =>
+                (c.Nombre.ToUpper().Contains(busqueda) ||
+                 c.Email.ToUpper().Contains(busqueda)) &&
+                (estado == "todos" || (estado == "activo" ? c.Activo : !c.Activo)));
+
+            dgvUsuarios.DataSource = listaFiltrada;
+            dgvUsuarios.DataBind();
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Text = string.Empty;
             CargarGrilla();
         }
     }
