@@ -41,7 +41,7 @@
                                         TextMode="Email" placeholder="Ingresá tu email" />
                                 </div>
                             </div>
-                            <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn-login" />
+                            <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn-login" OnClick="btnEnviar_Click"/>
                         </asp:Panel>
                         <asp:Panel ID="pnlConfirmacion" runat="server" Visible="false">
                             <div class="alert alert-success mt-3">

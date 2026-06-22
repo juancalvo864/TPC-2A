@@ -94,6 +94,47 @@ namespace negocio
             }
         }
 
+        public Usuario ObtenerPorEmail(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT U.id, U.nombre, U.apellido, U.email, U.login, U.hash_password, " +
+                                     "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
+                                     "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id " +
+                                     "WHERE U.email = @email AND U.activo = 1");
+                datos.setearParametro("@email", email);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Usuario u = new Usuario();
+                    u.Id = (int)datos.Lector["id"];
+                    u.Nombre = (string)datos.Lector["nombre"];
+                    u.Apellido = datos.Lector["apellido"] == DBNull.Value ? null : (string)datos.Lector["apellido"];
+                    u.Email = (string)datos.Lector["email"];
+                    u.Login = (string)datos.Lector["login"];
+                    u.HashPassword = (string)datos.Lector["hash_password"];
+                    u.Activo = (bool)datos.Lector["activo"];
+                    u.FechaCreacion = (DateTime)datos.Lector["fecha_creacion"];
+                    u.Rol = new Rol();
+                    u.Rol.Id = (int)datos.Lector["rol_id"];
+                    u.Rol.Nombre = (string)datos.Lector["rol_nombre"];
+                    return u;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void Agregar(Usuario u)
         {
             AccesoDatos datos = new AccesoDatos();
