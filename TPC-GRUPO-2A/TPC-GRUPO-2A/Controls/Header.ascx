@@ -1,14 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Header.ascx.cs" Inherits="TPC_GRUPO_2A.Controls.Header"%>
 
 <header class="app-topbar">
-    <div class="topbar-search">
-        <input class="form-control"
-            type="search"
-            placeholder="Buscar cliente, reclamo o telefono..."
-            aria-label="Buscar">
-    </div>
 
-     <div class="topbar-user">
+     <div class="topbar-user" style="margin-left:auto">
         <a href="Perfil.aspx" class="text-muted small text-decoration-none"/>
         <div class="dropdown">
             <a class="text-muted small text-decoration-none dropdown-toggle d-flex justify-content-between align-items-center gap-2" href="Perfil.aspx" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
