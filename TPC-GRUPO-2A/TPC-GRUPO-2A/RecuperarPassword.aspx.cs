@@ -18,7 +18,40 @@ namespace TPC_GRUPO_2A
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                string email = txtEmail.Text.Trim();
+
+                UsuarioNegocio un = new UsuarioNegocio();
+                Usuario usuario = un.ObtenerPorEmail(email);
+
+                if (usuario != null)
+                {
+                    string nuevaPassword = GenerarPasswordRandom();
+
+                    usuario.HashPassword = nuevaPassword;
+                    un.Modificar(usuario);
+                }
+
+                pnlFormulario.Visible = false;
+                pnlConfirmacion.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+            }
+        }
+
+        private string GenerarPasswordRandom()
+        {
+            const string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            Random random = new Random();
+            char[] password = new char[8];
+
+            for (int i = 0; i < password.Length; i++)
+                password[i] = caracteres[random.Next(caracteres.Length)];
+
+            return new string(password);
         }
     }
 }
