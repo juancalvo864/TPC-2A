@@ -1,4 +1,5 @@
 ﻿using dominio;
+using Helpers;
 using negocio;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,13 @@ namespace TPC_GRUPO_2A
 
                     usuario.HashPassword = nuevaPassword;
                     un.Modificar(usuario);
+
+                    Correo correo = new Correo();
+                    correo.EnviarCorreo(
+                        usuario.Email,
+                        "Recuperación de contraseña - CallCenter",
+                        $"Hola {usuario.Nombre}, tu nueva contraseña es: {nuevaPassword}\n\nTe recomendamos cambiarla desde tu perfil una vez que ingreses."
+                    );
                 }
 
                 pnlFormulario.Visible = false;

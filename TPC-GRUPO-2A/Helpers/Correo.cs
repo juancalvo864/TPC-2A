@@ -17,7 +17,7 @@ namespace Helpers
                 MailMessage mail = new MailMessage();
                 SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
 
-                mail.From = new MailAddress("armetal.autopartes@gmail.com", "CallCenter");
+                mail.From = new MailAddress("administracion@callcenter.com", "CallCenter");
                 mail.To.Add(destinatario);
                 mail.Subject = asunto;
                 mail.Body = cuerpo;
