@@ -16,12 +16,6 @@ namespace TPC_GRUPO_2A
             if (!IsPostBack)
             {
                 CargarGrilla();
-
-                if (Request.QueryString["id"] != null)
-                {
-                    int id = int.Parse(Request.QueryString["id"]);
-                    CargarFormularioEdicion(id);
-                }
             }
         }
 
@@ -41,74 +35,9 @@ namespace TPC_GRUPO_2A
             }
         }
 
-        private void CargarFormularioEdicion(int id)
-        {
-            try
-            {
-                PrioridadNegocio pn = new PrioridadNegocio();
-                Prioridad p = pn.ObtenerPorId(id);
-
-                txtNombre.Text = p.Nombre;
-                txtNivel.Text = p.Nivel.ToString();
-                lblTituloPanel.Text = "Editar Prioridad";
-                pnlFormulario.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", ex);
-            }
-        }
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            LimpiarFormulario();
-            lblTituloPanel.Text = "Nueva Prioridad";
-            pnlFormulario.Visible = true;
-        }
-
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Prioridad p = new Prioridad();
-                p.Nombre = txtNombre.Text.Trim();
-                p.Nivel = int.Parse(txtNivel.Text.Trim());
-                p.Activo = true;
-
-                PrioridadNegocio pn = new PrioridadNegocio();
-
-                if (Request.QueryString["id"] != null)
-                {
-                    p.Id = int.Parse(Request.QueryString["id"]);
-                    pn.Modificar(p);
-                }
-                else
-                {
-                    pn.Agregar(p);
-                }
-
-                LimpiarFormulario();
-                pnlFormulario.Visible = false;
-                Response.Redirect("~/Prioridades.aspx");
-            }
-            catch (Exception ex)
-            {
-                Session.Add("Error", ex);
-            }
-        }
-
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
-            pnlFormulario.Visible = false;
-            if (Request.QueryString["id"] != null)
-            {
-                Response.Redirect("~/Prioridades.aspx");
-            }
-        }
-        private void LimpiarFormulario()
-        {
-            txtNombre.Text = string.Empty;
-            txtNivel.Text = string.Empty;
+            Response.Redirect("~/PrioridadesForm.aspx");
         }
 
         protected void dgvPrioridades_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -116,7 +45,7 @@ namespace TPC_GRUPO_2A
             if (e.CommandName == "Editar")
             {
                 int id = int.Parse(e.CommandArgument.ToString());
-                Response.Redirect("~/Prioridades.aspx?id=" + id);
+                Response.Redirect("~/PrioridadesForm.aspx?id=" + id);
             }
 
             if (e.CommandName == "Baja")
@@ -124,12 +53,10 @@ namespace TPC_GRUPO_2A
                 try
                 {
                     int id = int.Parse(e.CommandArgument.ToString());
-
                     PrioridadNegocio pn = new PrioridadNegocio();
                     Prioridad p = pn.ObtenerPorId(id);
                     p.Activo = !p.Activo;
                     pn.Modificar(p);
-
                     CargarGrilla();
                 }
                 catch (Exception ex)
