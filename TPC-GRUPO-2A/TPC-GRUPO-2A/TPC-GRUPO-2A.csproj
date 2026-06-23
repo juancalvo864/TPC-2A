@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientesForm.aspx" />
+    <Content Include="Images\ProfileImages\default.png" />
     <Content Include="PrioridadesForm.aspx" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="TiposIncidenciasForm.aspx" />

@@ -36,6 +36,9 @@ namespace TPC_GRUPO_2A
                 txtRol.Text = u.Rol.Nombre;
                 txtFechaCreacion.Text = u.FechaCreacion.ToString("dd/MM/yyyy");
                 pnlError.Visible = false;
+                string imagePath = Server.MapPath("~/Images/ProfileImages/" + u.ImgUrl);
+                if (!string.IsNullOrEmpty(u.ImgUrl) && System.IO.File.Exists(imagePath))
+                    imgPerfil.ImageUrl = "~/Images/ProfileImages/" + u.ImgUrl;
             }
             catch (Exception ex)
             {
@@ -51,6 +54,7 @@ namespace TPC_GRUPO_2A
             btnEditar.Visible = false;
             btnGuardar.Visible = true;
             btnCancelar.Visible = true;
+            pnlImagen.Visible = true;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -69,6 +73,16 @@ namespace TPC_GRUPO_2A
                         return;
                     }
                     u.HashPassword = txtNuevaPassword.Text;
+                }
+
+                if (fileUpload.HasFile)
+                {
+                    string ruta = Server.MapPath("~/Images/ProfileImages/");
+                    string fileName = "imgPerfil-" + u.Id + ".jpg";
+                    string filePath = System.IO.Path.Combine(ruta, fileName);
+                    fileUpload.SaveAs(filePath);
+                    u.ImgUrl = fileName;
+                    imgPerfil.ImageUrl = "~/Images/ProfileImages/" + fileName;
                 }
 
                 UsuarioNegocio un = new UsuarioNegocio();
@@ -97,6 +111,7 @@ namespace TPC_GRUPO_2A
             btnEditar.Visible = true;
             btnGuardar.Visible = false;
             btnCancelar.Visible = false;
+            pnlImagen.Visible = false;
             CargarDatos();
         }
 
