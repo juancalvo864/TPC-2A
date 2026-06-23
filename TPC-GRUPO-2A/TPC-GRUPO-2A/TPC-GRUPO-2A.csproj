@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientesForm.aspx" />
+    <Content Include="PrioridadesForm.aspx" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="UsuariosForm.aspx" />
     <Content Include="Content\pages css\loginStyle.css" />
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="ClientesForm.aspx.designer.cs">
       <DependentUpon>ClientesForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrioridadesForm.aspx.cs">
+      <DependentUpon>PrioridadesForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrioridadesForm.aspx.designer.cs">
+      <DependentUpon>PrioridadesForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecuperarPassword.aspx.cs">
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
