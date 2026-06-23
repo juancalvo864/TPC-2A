@@ -20,7 +20,6 @@
                  <asp:GridView ID="dgvClientes" runat="server" CssClass="table table-bordered table-hover"
                      AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvClientes_RowCommand">
                      <Columns>
-                         <asp:BoundField DataField="Id" HeaderText="ID" />
                          <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                          <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                          <asp:BoundField DataField="Email" HeaderText="Email" />

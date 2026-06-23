@@ -20,7 +20,6 @@
                  <asp:GridView ID="dgvPrioridades" runat="server" CssClass="table table-bordered table-hover"
                      AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvPrioridades_RowCommand">
                      <Columns>
-                         <asp:BoundField DataField="Id" HeaderText="ID" />
                          <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                          <asp:BoundField DataField="Nivel" HeaderText="Nivel" />
                          <asp:TemplateField HeaderText="Estado">
