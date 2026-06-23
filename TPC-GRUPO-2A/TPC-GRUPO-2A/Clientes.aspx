@@ -2,7 +2,9 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main>
-        <h2>Página de Clientes</h2>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Clientes</h2>
+        </div>
         <div class="d-flex gap-2 mb-3">
             <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select" style="max-width:160px;">
                 <asp:ListItem Value="activo" Text="Activos" Selected="True" />

@@ -195,14 +195,16 @@
 
                 </div>
 
-                <hr />
 
+            </div>
+        </div>
+        <br />
                 <div class="d-flex gap-2">
                     <asp:Button 
                         ID="btnGuardar" 
                         runat="server" 
                         Text="Guardar"
-                        CssClass="btn btn-primary" 
+                        CssClass="btn btn-success" 
                         OnClick="btnGuardar_Click"
                         ValidationGroup="Cliente" />
 
@@ -214,16 +216,5 @@
                         OnClick="btnCancelar_Click"
                         CausesValidation="false" />
                 </div>
-
-            </div>
-        </div>
     </div>
 </asp:Content>
-
-<%--        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Email { get; set; }
-        public string Telefono { get; set; }
-        public string Identificacion { get; set; }
-        public DateTime FechaAlta { get; set; }
-        public bool Activo { get; set; }--%>
