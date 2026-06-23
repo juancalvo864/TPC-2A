@@ -16,7 +16,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("SELECT U.id, U.nombre, U.apellido, U.email, U.login, U.hash_password, " +
-                                     "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
+                                     "U.img_url, U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
                                      "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id " +
                                      "WHERE U.email = @login AND U.hash_password = @password AND U.activo = 1");
 
@@ -38,6 +38,7 @@ namespace negocio
                     u.Rol = new Rol();
                     u.Rol.Id = (int)datos.Lector["rol_id"];
                     u.Rol.Nombre = (string)datos.Lector["rol_nombre"];
+                    u.ImgUrl = datos.Lector["img_url"] == DBNull.Value ? null : (string)datos.Lector["img_url"];
                     return u;
                 }
 
