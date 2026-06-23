@@ -19,7 +19,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("SELECT U.id, U.nombre, U.apellido, U.email, U.login, U.hash_password, " +
-                                     "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
+                                     "U.img_url, U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
                                      "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id");
                 datos.ejecutarLectura();
 
@@ -37,6 +37,7 @@ namespace negocio
                     u.Rol = new Rol();
                     u.Rol.Id = (int)datos.Lector["rol_id"];
                     u.Rol.Nombre = (string)datos.Lector["rol_nombre"];
+                    u.ImgUrl = datos.Lector["img_url"] == DBNull.Value ? null : (string)datos.Lector["img_url"];
                     lista.Add(u);
                 }
 
@@ -59,7 +60,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("SELECT U.id, U.nombre, U.apellido, U.email, U.login, U.hash_password, " +
-                                     "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
+                                     "U.img_url, U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
                                      "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id " +
                                      "WHERE U.id = @id");
                 datos.setearParametro("@id", id);
@@ -79,6 +80,7 @@ namespace negocio
                     u.Rol = new Rol();
                     u.Rol.Id = (int)datos.Lector["rol_id"];
                     u.Rol.Nombre = (string)datos.Lector["rol_nombre"];
+                    u.ImgUrl = datos.Lector["img_url"] == DBNull.Value ? null : (string)datos.Lector["img_url"];
                     return u;
                 }
 
@@ -101,7 +103,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("SELECT U.id, U.nombre, U.apellido, U.email, U.login, U.hash_password, " +
-                                     "U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
+                                     "U.img_url, U.activo, U.fecha_creacion, R.id as rol_id, R.nombre as rol_nombre " +
                                      "FROM USUARIOS U INNER JOIN ROLES R ON U.rol_id = R.id " +
                                      "WHERE U.email = @email AND U.activo = 1");
                 datos.setearParametro("@email", email);
@@ -121,6 +123,7 @@ namespace negocio
                     u.Rol = new Rol();
                     u.Rol.Id = (int)datos.Lector["rol_id"];
                     u.Rol.Nombre = (string)datos.Lector["rol_nombre"];
+                    u.ImgUrl = datos.Lector["img_url"] == DBNull.Value ? null : (string)datos.Lector["img_url"];
                     return u;
                 }
 
@@ -172,7 +175,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("UPDATE USUARIOS SET nombre = @nombre, apellido = @apellido, email = @email, " +
-                                     "hash_password = @hashPassword, rol_id = @rolId, activo = @activo WHERE id = @id");
+                                     "hash_password = @hashPassword, img_url = @imgUrl, rol_id = @rolId, activo = @activo WHERE id = @id");
 
                 datos.setearParametro("@nombre", u.Nombre);
                 datos.setearParametro("@apellido", (object)u.Apellido ?? DBNull.Value);
@@ -181,6 +184,7 @@ namespace negocio
                 datos.setearParametro("@rolId", u.Rol.Id);
                 datos.setearParametro("@activo", u.Activo);
                 datos.setearParametro("@id", u.Id);
+                datos.setearParametro("@imgUrl", (object)u.ImgUrl ?? DBNull.Value);
 
                 datos.ejecutarAccion();
             }
