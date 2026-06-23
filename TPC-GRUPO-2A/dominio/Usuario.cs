@@ -14,6 +14,7 @@ namespace dominio
         public bool Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
         public Rol Rol { get; set; }
+        public string ImgUrl { get; set; }
 
         public Usuario()
         {
