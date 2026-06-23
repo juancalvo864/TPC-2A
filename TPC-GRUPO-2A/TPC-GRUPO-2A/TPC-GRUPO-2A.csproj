@@ -102,6 +102,7 @@
     <Content Include="ClientesForm.aspx" />
     <Content Include="PrioridadesForm.aspx" />
     <Content Include="RecuperarPassword.aspx" />
+    <Content Include="TiposIncidenciasForm.aspx" />
     <Content Include="UsuariosForm.aspx" />
     <Content Include="Content\pages css\loginStyle.css" />
     <Content Include="Controls\Header.ascx" />
@@ -224,6 +225,13 @@
     </Compile>
     <Compile Include="RecuperarPassword.aspx.designer.cs">
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TiposIncidenciasForm.aspx.cs">
+      <DependentUpon>TiposIncidenciasForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TiposIncidenciasForm.aspx.designer.cs">
+      <DependentUpon>TiposIncidenciasForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="UsuariosForm.aspx.cs">
       <DependentUpon>UsuariosForm.aspx</DependentUpon>
