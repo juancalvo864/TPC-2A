@@ -9,6 +9,80 @@ namespace negocio
 {
     public class IncidenteNegocio
     {
+
+        public List<Incidente> ObtenerTodos()
+        {
+            List<Incidente> incidentes = new List<Incidente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT I.id, I.nro_reclamo, I.descripcion_problematica, I.fecha_alta, I.fecha_ultima_actualizacion, " +
+                    "I.cliente_id, C.nombre as cliente_nombre, " +
+                    "I.tipo_incidencia_id, T.nombre as tipo_incidencia_nombre, " +
+                    "I.prioridad_id, P.nombre as prioridad_nombre, " +
+                    "I.estado_id, E.nombre as estado_nombre, " +
+                    "I.usuario_creador_id, UC.nombre as creador_nombre, " +
+                    "I.usuario_asignado_id, UA.nombre as asignado_nombre, " +
+                    "I.dato_resolucion, I.fecha_resolucion, I.comentario_cierre, I.fecha_cierre " +
+                    "FROM INCIDENTES I " +
+                    "INNER JOIN CLIENTES C ON I.cliente_id = C.id " +
+                    "INNER JOIN TIPOS_INCIDENCIA T ON I.tipo_incidencia_id = T.id " +
+                    "INNER JOIN PRIORIDADES P ON I.prioridad_id = P.id " +
+                    "INNER JOIN ESTADOS_INCIDENTE E ON I.estado_id = E.id " +
+                    "INNER JOIN USUARIOS UC ON I.usuario_creador_id = UC.id " +
+                    "INNER JOIN USUARIOS UA ON I.usuario_asignado_id = UA.id " +
+                    "ORDER BY I.fecha_alta DESC");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Incidente i = new Incidente();
+                    i.Id = (int)datos.Lector["id"];
+                    i.NroReclamo = (string)datos.Lector["nro_reclamo"];
+                    i.DescripcionProblematica = (string)datos.Lector["descripcion_problematica"];
+                    i.FechaAlta = (DateTime)datos.Lector["fecha_alta"];
+                    i.FechaUltimaActualizacion = (DateTime)datos.Lector["fecha_ultima_actualizacion"];
+                    i.Cliente = new Cliente();
+                    i.Cliente.Id = (int)datos.Lector["cliente_id"];
+                    i.Cliente.Nombre = (string)datos.Lector["cliente_nombre"];
+                    i.TipoIncidencia = new TipoIncidencia();
+                    i.TipoIncidencia.Id = (int)datos.Lector["tipo_incidencia_id"];
+                    i.TipoIncidencia.Nombre = (string)datos.Lector["tipo_incidencia_nombre"];
+                    i.Prioridad = new Prioridad();
+                    i.Prioridad.Id = (int)datos.Lector["prioridad_id"];
+                    i.Prioridad.Nombre = (string)datos.Lector["prioridad_nombre"];
+                    i.EstadoActual = new EstadoIncidencia();
+                    i.EstadoActual.Id = (int)datos.Lector["estado_id"];
+                    i.EstadoActual.Nombre = (string)datos.Lector["estado_nombre"];
+                    i.UsuarioCreador = new Usuario();
+                    i.UsuarioCreador.Id = (int)datos.Lector["usuario_creador_id"];
+                    i.UsuarioCreador.Nombre = (string)datos.Lector["creador_nombre"];
+                    i.UsuarioAsignado = new Usuario();
+                    i.UsuarioAsignado.Id = (int)datos.Lector["usuario_asignado_id"];
+                    i.UsuarioAsignado.Nombre = (string)datos.Lector["asignado_nombre"];
+                    i.DatoResolucion = datos.Lector["dato_resolucion"] == DBNull.Value ? null : (string)datos.Lector["dato_resolucion"];
+                    i.FechaResolucion = datos.Lector["fecha_resolucion"] == DBNull.Value ? (DateTime?)null : (DateTime)datos.Lector["fecha_resolucion"];
+                    i.ComentarioCierre = datos.Lector["comentario_cierre"] == DBNull.Value ? null : (string)datos.Lector["comentario_cierre"];
+                    i.FechaCierre = datos.Lector["fecha_cierre"] == DBNull.Value ? (DateTime?)null : (DateTime)datos.Lector["fecha_cierre"];
+
+                    incidentes.Add(i);
+                }
+
+                return incidentes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Agregar(Incidente i)
         {
             AccesoDatos datos = new AccesoDatos();
