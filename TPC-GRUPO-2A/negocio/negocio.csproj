@@ -45,6 +45,7 @@
     <Compile Include="ArticuloNegocio.cs" />
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="EstadoIncidenciaNegocio.cs" />
+    <Compile Include="IncidenteNegocio.cs" />
     <Compile Include="LoginNegocio.cs" />
     <Compile Include="PrioridadNegocio.cs" />
     <Compile Include="RolNegocio.cs" />
