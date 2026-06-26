@@ -45,9 +45,10 @@ namespace TPC_GRUPO_2A
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
         }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -67,7 +68,8 @@ namespace TPC_GRUPO_2A
 
                 ClienteNegocio cn = new ClienteNegocio();
 
-                if (Request.QueryString["id"] != null)
+                bool esEdicion = Request.QueryString["id"] != null;
+                if (esEdicion)
                 {
                     c.Id = int.Parse(Request.QueryString["id"]);
                     cn.Modificar(c);
@@ -77,14 +79,21 @@ namespace TPC_GRUPO_2A
                     cn.Agregar(c);
                 }
 
-                Response.Redirect("~/Clientes.aspx", false);
-                Context.ApplicationInstance.CompleteRequest();
+                string accion = esEdicion ? "modificado" : "registrado";
+                ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
+                    $"swExito('Cliente {accion} correctamente.', 'Clientes.aspx');", true);
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
-                Response.Redirect("~/Error.aspx", false);
+                MostrarError(ex.Message);
             }
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            string msg = mensaje.Replace("'", "\\'").Replace("\r\n", " ");
+            ScriptManager.RegisterStartupScript(this, GetType(), "swErr",
+                $"swError('{msg}');", true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

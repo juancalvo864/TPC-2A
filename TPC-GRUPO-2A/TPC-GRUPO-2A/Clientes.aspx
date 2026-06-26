@@ -43,7 +43,7 @@
                                      Text='<%# (bool)Eval("Activo") ? "Dar de baja" : "Activar" %>'
                                      CssClass='<%# (bool)Eval("Activo") ? "btn btn-danger btn-sm" : "btn btn-success btn-sm" %>'
                                      CommandName="Baja" CommandArgument='<%# Eval("Id") %>'
-                                     OnClientClick='<%# (bool)Eval("Activo") ? "return confirm(\"¿Estás seguro que querés dar de baja este registro?\");" : "return confirm(\"¿Estás seguro que querés activar este registro?\");" %>' />
+                                     OnClientClick='<%# (bool)Eval("Activo") ? "return swConfirmarClick(\"¿Queres dar de baja este cliente?\", this);" : "return swConfirmarClick(\"¿Queres activar este cliente?\", this);" %>' />
                              </ItemTemplate>
                          </asp:TemplateField>
                      </Columns>

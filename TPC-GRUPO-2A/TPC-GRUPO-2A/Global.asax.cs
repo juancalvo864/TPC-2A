@@ -17,5 +17,15 @@ namespace TPC_GRUPO_2A
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError();
+            if (ex != null)
+            {
+                Server.ClearError();
+                Response.Redirect("~/Error");
+            }
+        }
     }
 }

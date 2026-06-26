@@ -62,28 +62,8 @@
         <br />
                 <div class="d-flex gap-2">
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="Usuario" />
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" OnClientClick="confirmarEliminacion(this); return false;" CausesValidation="false" Visible="false" />
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" OnClientClick="swConfirmar('Esta accionn no se puede deshacer.', this); return false;" CausesValidation="false" Visible="false" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" CausesValidation="false" />
                 </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function confirmarEliminacion(button) {
-            Swal.fire({
-                title: '\u00BFEliminar usuario?',
-                text: 'Esta accion no se puede deshacer.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Si, eliminar',
-                cancelButtonText: 'Cancelar',
-                confirmButtonColor: '#dc3545',
-                reverseButtons: true
-            }).then(function (result) {
-                if (result.isConfirmed) {
-                    __doPostBack(button.name, '');
-                }
-            });
-        }
-    </script>
 </asp:Content>

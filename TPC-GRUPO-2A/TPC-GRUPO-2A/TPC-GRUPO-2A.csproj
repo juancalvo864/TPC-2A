@@ -100,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientesForm.aspx" />
+    <Content Include="Error.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\ProfileImages\default.png" />
     <Content Include="PrioridadesForm.aspx" />
     <Content Include="RecuperarPassword.aspx" />
@@ -212,6 +215,11 @@
     </Compile>
     <Compile Include="ClientesForm.aspx.designer.cs">
       <DependentUpon>ClientesForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PrioridadesForm.aspx.cs">
       <DependentUpon>PrioridadesForm.aspx</DependentUpon>

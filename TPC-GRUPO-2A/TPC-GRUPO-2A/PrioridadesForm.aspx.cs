@@ -35,9 +35,10 @@ namespace TPC_GRUPO_2A
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
         }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -47,8 +48,9 @@ namespace TPC_GRUPO_2A
                 p.Nivel = int.Parse(txtNivel.Text.Trim());
 
                 PrioridadNegocio pn = new PrioridadNegocio();
+                bool esEdicion = Request.QueryString["id"] != null;
 
-                if (Request.QueryString["id"] != null)
+                if (esEdicion)
                 {
                     p.Id = int.Parse(Request.QueryString["id"]);
                     p.Activo = pn.ObtenerPorId(p.Id).Activo;
@@ -60,12 +62,21 @@ namespace TPC_GRUPO_2A
                     pn.Agregar(p);
                 }
 
-                Response.Redirect("~/Prioridades.aspx");
+                string accion = esEdicion ? "modificada" : "registrada";
+                ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
+                    $"swExito('Prioridad {accion} correctamente.', 'Prioridades.aspx');", true);
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            string msg = mensaje.Replace("'", "\\'").Replace("\r\n", " ");
+            ScriptManager.RegisterStartupScript(this, GetType(), "swErr",
+                $"swError('{msg}');", true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

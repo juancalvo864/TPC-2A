@@ -21,6 +21,72 @@
     <link runat="server" href="~/Content/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet" />
     <link runat="server" href="~/Content/Site.css" rel="stylesheet" />
     <script src="<%= ResolveUrl("~/Scripts/bootstrap.bundle.min.js") %>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function swConfirmar(mensaje, boton) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: mensaje,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, continuar',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#dc3545',
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    __doPostBack(boton.name, '');
+                }
+            });
+        }
+
+        var _swClickPendiente = false;
+        function swConfirmarClick(mensaje, boton) {
+            if (_swClickPendiente) {
+                _swClickPendiente = false;
+                return true;
+            }
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: mensaje,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, continuar',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#dc3545',
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    _swClickPendiente = true;
+                    boton.click();
+                }
+            });
+            return false;
+        }
+
+        function swExito(mensaje, redireccion) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: mensaje,
+                icon: 'success',
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then(function () {
+                if (redireccion) window.location.href = redireccion;
+            });
+        }
+
+        function swError(mensaje) {
+            Swal.fire({
+                title: 'Error',
+                text: mensaje,
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#dc3545'
+            });
+        }
+    </script>
 </head>
 <body>
     <form runat="server" class="app-shell">

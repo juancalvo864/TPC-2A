@@ -69,8 +69,9 @@ namespace TPC_GRUPO_2A
 
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 Usuario u;
+                bool esEdicion = Request.QueryString["id"] != null;
 
-                if (Request.QueryString["id"] != null)
+                if (esEdicion)
                 {
                     int id = int.Parse(Request.QueryString["id"]);
                     u = negocio.ObtenerPorId(id);
@@ -104,16 +105,18 @@ namespace TPC_GRUPO_2A
                 if (!string.IsNullOrWhiteSpace(txtPassword.Text))
                     u.HashPassword = txtPassword.Text.Trim();
 
-                if (Request.QueryString["id"] != null)
+                if (esEdicion)
                     negocio.Modificar(u);
                 else
                     negocio.Agregar(u);
 
-                Response.Redirect("~/Usuarios.aspx");
+                string accion = esEdicion ? "modificado" : "registrado";
+                ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
+                    $"swExito('Usuario {accion} correctamente.', 'Usuarios.aspx');", true);
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
         }
 
@@ -136,12 +139,20 @@ namespace TPC_GRUPO_2A
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 negocio.Eliminar(id);
 
-                Response.Redirect("~/Usuarios.aspx");
+                ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
+                    "swExito('Usuario eliminado correctamente.', 'Usuarios.aspx');", true);
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            string msg = mensaje.Replace("'", "\\'").Replace("\r\n", " ");
+            ScriptManager.RegisterStartupScript(this, GetType(), "swErr",
+                $"swError('{msg}');", true);
         }
     }
 }

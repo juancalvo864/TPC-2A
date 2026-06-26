@@ -35,7 +35,7 @@ namespace TPC_GRUPO_2A
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
         }
 
@@ -48,8 +48,9 @@ namespace TPC_GRUPO_2A
                 t.Descripcion = txtDescripcion.Text.Trim();
 
                 TipoIncidenciaNegocio tn = new TipoIncidenciaNegocio();
+                bool esEdicion = Request.QueryString["id"] != null;
 
-                if (Request.QueryString["id"] != null)
+                if (esEdicion)
                 {
                     t.Id = int.Parse(Request.QueryString["id"]);
                     t.Activo = tn.ObtenerPorId(t.Id).Activo;
@@ -61,12 +62,21 @@ namespace TPC_GRUPO_2A
                     tn.Agregar(t);
                 }
 
-                Response.Redirect("~/TiposIncidencias.aspx");
+                string accion = esEdicion ? "modificado" : "registrado";
+                ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
+                    $"swExito('Tipo de incidencia {accion} correctamente.', 'TiposIncidencias.aspx');", true);
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                MostrarError(ex.Message);
             }
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            string msg = mensaje.Replace("'", "\\'").Replace("\r\n", " ");
+            ScriptManager.RegisterStartupScript(this, GetType(), "swErr",
+                $"swError('{msg}');", true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
