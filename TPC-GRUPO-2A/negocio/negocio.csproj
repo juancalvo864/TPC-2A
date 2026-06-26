@@ -48,6 +48,7 @@
     <Compile Include="IncidenteNegocio.cs" />
     <Compile Include="LoginNegocio.cs" />
     <Compile Include="PrioridadNegocio.cs" />
+    <Compile Include="ReglaNegocioException.cs" />
     <Compile Include="RolNegocio.cs" />
     <Compile Include="TipoIncidenciaNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />

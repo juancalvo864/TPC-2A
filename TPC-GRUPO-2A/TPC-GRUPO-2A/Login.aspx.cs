@@ -15,7 +15,8 @@ namespace TPC_GRUPO_2A
         {
             if (Session["usuario"] != null)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("~/Default.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -42,11 +43,13 @@ namespace TPC_GRUPO_2A
                 }
 
                 Session["usuario"] = usuario;
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("~/Default.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
-                Session.Add("Error",ex);
+                MostrarError("No se pudo iniciar sesión. " + ex.Message);
+                Session["Error"] = ex;
             }
         }
 

@@ -25,12 +25,14 @@ namespace dominio
         public string ComentarioCierre { get; set; }
         public DateTime? FechaCierre { get; set; }
         public Usuario UsuarioCierre { get; set; }
+        public List<ComentarioIncidencia> Comentarios { get; set; }
 
         public Incidente()
         {
             FechaAlta = DateTime.Now;
             FechaUltimaActualizacion = DateTime.Now;
             HistorialEstados = new List<HistorialEstado>();
+            Comentarios = new List<ComentarioIncidencia>();
         }
     }
 }

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="ComentarioIncidencia.cs" />
     <Compile Include="EstadoIncidencia.cs" />
     <Compile Include="HistorialEstado.cs" />
     <Compile Include="Incidente.cs" />
