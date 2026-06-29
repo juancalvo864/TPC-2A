@@ -13,6 +13,9 @@ namespace TPC_GRUPO_2A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SesionHelper.EsTelefonista)
+                Response.Redirect("~/Default.aspx");
+
             if (!IsPostBack)
             {
                 CargarGrilla();

@@ -10,6 +10,9 @@ namespace TPC_GRUPO_2A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SesionHelper.EsAdministrador)
+                Response.Redirect("~/Default.aspx");
+
             if (!IsPostBack)
             {
                 CargarRoles();

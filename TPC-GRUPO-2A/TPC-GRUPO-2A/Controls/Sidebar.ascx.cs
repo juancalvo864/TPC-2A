@@ -8,7 +8,17 @@ namespace TPC_GRUPO_2A.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            AplicarVisibilidadPorRol();
             MarcarLinkActivo();
+        }
+
+        private void AplicarVisibilidadPorRol()
+        {
+            lnkUsuarios.Visible = SesionHelper.EsAdministrador;
+
+            bool noEsTelefonista = !SesionHelper.EsTelefonista;
+            lnkTipos.Visible       = noEsTelefonista;
+            lnkPrioridades.Visible = noEsTelefonista;
         }
 
         private void MarcarLinkActivo()
