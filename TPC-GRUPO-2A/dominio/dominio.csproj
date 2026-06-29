@@ -50,6 +50,7 @@
     <Compile Include="Incidente.cs" />
     <Compile Include="Prioridad.cs" />
     <Compile Include="Rol.cs" />
+    <Compile Include="RolesEnum.cs" />
     <Compile Include="TipoIncidencia.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -243,6 +243,9 @@
     <Compile Include="ReclamosForm.aspx.designer.cs">
       <DependentUpon>ReclamosForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SesionHelper.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="TiposIncidenciasForm.aspx.cs">
       <DependentUpon>TiposIncidenciasForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -533,9 +533,9 @@ namespace negocio
 
         private bool EsAdministradorOSupervisor(Usuario usuario)
         {
-            string rol = usuario.Rol != null ? usuario.Rol.Nombre : null;
-            return string.Equals(rol, Rol.Nombres.Administrador, StringComparison.OrdinalIgnoreCase) ||
-                   string.Equals(rol, Rol.Nombres.Supervisor, StringComparison.OrdinalIgnoreCase);
+            if (usuario.Rol == null) return false;
+            var rol = (RolesEnum)usuario.Rol.Id;
+            return rol == RolesEnum.Administrador || rol == RolesEnum.Supervisor;
         }
 
         private bool EsEstado(EstadoIncidencia estado, string nombre)
