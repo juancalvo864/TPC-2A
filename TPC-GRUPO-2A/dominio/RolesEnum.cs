@@ -3,7 +3,7 @@ namespace dominio
     public enum RolesEnum
     {
         Administrador = 1,
-        Telefonista   = 2,
-        Supervisor    = 3
+        Supervisor    = 2,
+        Telefonista   = 3
     }
 }
