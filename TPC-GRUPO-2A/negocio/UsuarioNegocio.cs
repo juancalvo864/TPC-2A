@@ -203,7 +203,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("DELETE FROM USUARIOS WHERE id = @id");
+                datos.setearConsulta("UPDATE USUARIOS SET activo = 0 WHERE id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
