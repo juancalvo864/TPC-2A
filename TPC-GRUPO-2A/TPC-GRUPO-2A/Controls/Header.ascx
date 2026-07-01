@@ -7,7 +7,10 @@
         <div class="dropdown">
             <a class="text-muted small text-decoration-none dropdown-toggle d-flex justify-content-between align-items-center gap-2" href="Perfil.aspx" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
              <div class="user-avatar">
-                <asp:Label ID="lblIniciales" runat="server" />
+                 <asp:Image ID="imgPerfil"
+                     ImageUrl="~/Images/ProfileImages/default.png"
+                     style="height:32px; width:32px; border-radius: 50%;"
+                     runat="server" />
              </div>
              <div>
                 <strong><asp:Label ID="lblNombre" runat="server" /></strong>

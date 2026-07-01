@@ -14,8 +14,9 @@ namespace TPC_GRUPO_2A.Controls
                 Usuario u = (Usuario)Session["usuario"];
                 lblNombre.Text = u.Nombre + " " + u.Apellido;
                 lblRol.Text = u.Rol.Nombre;
-                lblIniciales.Text = u.Nombre.Substring(0, 1).ToUpper() +
-                                    (string.IsNullOrEmpty(u.Apellido) ? "" : u.Apellido.Substring(0, 1).ToUpper());
+                string imagePath = Server.MapPath("~/Images/ProfileImages/" + u.ImgUrl);
+                if (!string.IsNullOrEmpty(u.ImgUrl) && System.IO.File.Exists(imagePath))
+                    imgPerfil.ImageUrl = "~/Images/ProfileImages/" + u.ImgUrl;
             }
         }
 
