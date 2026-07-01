@@ -1,4 +1,5 @@
 using dominio;
+using Helpers;
 using negocio;
 using System;
 using System.Web.UI;
@@ -109,9 +110,19 @@ namespace TPC_GRUPO_2A
                     u.HashPassword = txtPassword.Text.Trim();
 
                 if (esEdicion)
+                {
                     negocio.Modificar(u);
+                }
                 else
+                {
                     negocio.Agregar(u);
+                    Correo correo = new Correo();
+                    correo.EnviarCorreo(
+                    u.Email,
+                    "Alta de usuario - CallCenter",
+                    $"¡Hola {u.Nombre} {u.Apellido} bienvenido/a a CallCenter!,\n Tu usuario es: {u.Email}\n Tu clave es: {u.HashPassword}\nTe recomendamos cambiar tu clave desde tu perfil una vez que ingreses."
+                );
+                }
 
                 string accion = esEdicion ? "modificado" : "registrado";
                 ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
