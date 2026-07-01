@@ -115,7 +115,7 @@ namespace negocio
 
             Incidente actual = ObtenerPorId(incidenteActualizado.Id);
             ValidarAccesoIncidencia(actual, actor);
-            ValidarNoCerrado(actual);
+            ValidarNoEditable(actual);
 
             actual.DescripcionProblematica = incidenteActualizado.DescripcionProblematica;
             actual.TipoIncidencia = incidenteActualizado.TipoIncidencia;
@@ -136,7 +136,7 @@ namespace negocio
                 throw new ReglaNegocioException("Debe indicar un usuario destino valido.");
 
             Incidente incidente = ObtenerPorId(incidenteId);
-            ValidarNoCerrado(incidente);
+            ValidarNoEditable(incidente);
 
             if (incidente.UsuarioAsignado != null && incidente.UsuarioAsignado.Id == nuevoUsuarioAsignadoId)
                 return;
@@ -208,7 +208,7 @@ namespace negocio
 
             Incidente incidente = ObtenerPorId(incidenteId);
             ValidarAccesoIncidencia(incidente, actor);
-            ValidarNoCerrado(incidente);
+            ValidarNoEditable(incidente);
 
             AccesoDatos datos = new AccesoDatos();
             try
@@ -233,17 +233,17 @@ namespace negocio
             }
         }
 
-        public void ResolverIncidencia(int incidenteId, string datoResolucion, Usuario actor)
+        public void ResolverIncidencia(int incidenteId, string comentarioResolucion, Usuario actor)
         {
             ValidarUsuario(actor);
-            if (string.IsNullOrWhiteSpace(datoResolucion))
+            if (string.IsNullOrWhiteSpace(comentarioResolucion))
                 throw new ReglaNegocioException("Para resolver la incidencia debe indicar el dato final de resolucion.");
 
             Incidente incidente = ObtenerPorId(incidenteId);
             ValidarAccesoIncidencia(incidente, actor);
-            ValidarNoCerrado(incidente);
+            ValidarNoEditable(incidente);
 
-            incidente.DatoResolucion = datoResolucion.Trim();
+            incidente.DatoResolucion = comentarioResolucion.Trim();
             incidente.FechaResolucion = DateTime.Now;
             incidente.UsuarioResolucion = actor;
             incidente.FechaUltimaActualizacion = incidente.FechaResolucion.Value;
@@ -525,10 +525,11 @@ namespace negocio
                 throw new ReglaNegocioException("El usuario no tiene permisos para operar sobre esta incidencia.");
         }
 
-        private void ValidarNoCerrado(Incidente incidente)
+        private void ValidarNoEditable(Incidente incidente)
         {
-            if (EsEstado(incidente.EstadoActual, EstadoIncidencia.Nombres.Cerrado))
-                throw new ReglaNegocioException("No se puede modificar una incidencia cerrada.");
+            if (EsEstado(incidente.EstadoActual, EstadoIncidencia.Nombres.Resuelto) ||
+                EsEstado(incidente.EstadoActual, EstadoIncidencia.Nombres.Cerrado))
+                throw new ReglaNegocioException("No se puede modificar una incidencia resuelta o cerrada.");
         }
 
         private bool EsAdministradorOSupervisor(Usuario usuario)

@@ -1,4 +1,4 @@
-<%@ Page Title="Nueva incidencia" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReclamosForm.aspx.cs" Inherits="TPC_GRUPO_2A.ReclamosForm" %>
+<%@ Page Title="Nueva incidencia" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IncidenciasForm.aspx.cs" Inherits="TPC_GRUPO_2A.IncidenciasForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main class="incident-form-shell">

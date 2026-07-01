@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace TPC_GRUPO_2A
 {
-    public partial class Reclamos : Page
+    public partial class Incidencias : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +21,7 @@ namespace TPC_GRUPO_2A
 
         protected void btnNuevaIncidencia_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ReclamosForm.aspx");
+            Response.Redirect("~/IncidenciasForm.aspx");
         }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
@@ -123,6 +123,46 @@ namespace TPC_GRUPO_2A
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "swErr", $"swError('{SanitizarJs(ex.Message)}');", true);
                 MostrarModal();
+            }
+        }
+
+        protected void btnConfirmarResolver_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = int.Parse(hdnIncidenteId.Value);
+                Usuario usuario = Session["usuario"] as Usuario;
+                IncidenteNegocio negocio = new IncidenteNegocio();
+                negocio.ResolverIncidencia(id, txtDatoResolucion.Text, usuario);
+                txtDatoResolucion.Text = string.Empty;
+
+                CargarPanel();
+                CargarModal(id);
+                MostrarModal();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "swErr", $"swError('{SanitizarJs(ex.Message)}');", true);
+                MostrarModalResolucion();
+            }
+        }
+
+        protected void btnConfirmarCerrarIncidencia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = int.Parse(hdnIncidenteId.Value);
+                Usuario usuario = Session["usuario"] as Usuario;
+                IncidenteNegocio negocio = new IncidenteNegocio();
+                negocio.CerrarIncidencia(id, txtComentarioCierre.Text, usuario);
+                txtComentarioCierre.Text = string.Empty;
+                Response.Redirect("~/Incidencias.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "swErr", $"swError('{SanitizarJs(ex.Message)}');", true);
+                MostrarModalCierre();
             }
         }
 
@@ -277,6 +317,9 @@ namespace TPC_GRUPO_2A
             txtClienteDetalle.Text = ObtenerNombreCliente(incidente.Cliente.Nombre, incidente.Cliente.Apellido);
             txtEstadoActual.Text = incidente.EstadoActual.Nombre;
             txtProblematicaDetalle.Text = incidente.DescripcionProblematica;
+            txtDatoResolucion.Text = incidente.DatoResolucion ?? string.Empty;
+            txtComentarioCierre.Text = incidente.ComentarioCierre ?? string.Empty;
+            ConfigurarAccionesSegunEstado(incidente);
 
             CargarCombosDetalle(incidente, usuario);
 
@@ -286,22 +329,26 @@ namespace TPC_GRUPO_2A
 
         private void CargarCombosDetalle(Incidente incidente, Usuario usuario)
         {
+            bool bloqueada = EstaBloqueada(incidente);
+
             ddlTipoDetalle.DataSource = new TipoIncidenciaNegocio().ObtenerTodos().Where(x => x.Activo).OrderBy(x => x.Nombre).ToList();
             ddlTipoDetalle.DataTextField = "Nombre";
             ddlTipoDetalle.DataValueField = "Id";
             ddlTipoDetalle.DataBind();
             ddlTipoDetalle.SelectedValue = incidente.TipoIncidencia.Id.ToString();
+            ddlTipoDetalle.Enabled = !bloqueada;
 
             ddlPrioridadDetalle.DataSource = new PrioridadNegocio().ObtenerTodos().Where(x => x.Activo).OrderBy(x => x.Nivel).ToList();
             ddlPrioridadDetalle.DataTextField = "Nombre";
             ddlPrioridadDetalle.DataValueField = "Id";
             ddlPrioridadDetalle.DataBind();
             ddlPrioridadDetalle.SelectedValue = incidente.Prioridad.Id.ToString();
+            ddlPrioridadDetalle.Enabled = !bloqueada;
 
             IncidenteNegocio incidenteNegocio = new IncidenteNegocio();
             bool puedeReasignar = incidenteNegocio.PuedeReasignar(usuario);
             pnlAsignacion.Visible = puedeReasignar;
-            btnReasignar.Visible = puedeReasignar;
+            btnReasignar.Visible = puedeReasignar && !bloqueada;
 
             if (!puedeReasignar)
                 return;
@@ -312,6 +359,7 @@ namespace TPC_GRUPO_2A
             ddlAsignadoDetalle.DataBind();
             AjustarTextoUsuarios();
             ddlAsignadoDetalle.SelectedValue = incidente.UsuarioAsignado.Id.ToString();
+            ddlAsignadoDetalle.Enabled = !bloqueada;
         }
 
         private void AjustarTextoUsuarios()
@@ -329,6 +377,45 @@ namespace TPC_GRUPO_2A
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "showIncidentModal",
                 "var incidentModal = new bootstrap.Modal(document.getElementById('incidentModal')); incidentModal.show();", true);
+        }
+
+        private void MostrarModalResolucion()
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showResolveModal",
+                "var resolveModal = new bootstrap.Modal(document.getElementById('resolveModal')); resolveModal.show();", true);
+        }
+
+        private void MostrarModalCierre()
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showCloseModal",
+                "var closeModal = new bootstrap.Modal(document.getElementById('closeModal')); closeModal.show();", true);
+        }
+
+        private void ConfigurarAccionesSegunEstado(Incidente incidente)
+        {
+            bool estaCerrado = EstaEnEstado(incidente, EstadoIncidencia.Nombres.Cerrado);
+            bool estaResuelto = EstaEnEstado(incidente, EstadoIncidencia.Nombres.Resuelto);
+            bool bloqueada = estaResuelto || estaCerrado;
+
+            txtProblematicaDetalle.Enabled = !bloqueada;
+            txtNuevoComentario.Enabled = !bloqueada;
+            btnGuardarCambios.Visible = !bloqueada;
+            btnAgregarComentario.Visible = !bloqueada;
+            btnResolver.Visible = !bloqueada;
+            btnCerrarIncidencia.Visible = !estaCerrado && estaResuelto;
+        }
+
+        private bool EstaBloqueada(Incidente incidente)
+        {
+            return EstaEnEstado(incidente, EstadoIncidencia.Nombres.Resuelto) ||
+                   EstaEnEstado(incidente, EstadoIncidencia.Nombres.Cerrado);
+        }
+
+        private bool EstaEnEstado(Incidente incidente, string nombreEstado)
+        {
+            return incidente != null &&
+                   incidente.EstadoActual != null &&
+                   string.Equals(incidente.EstadoActual.Nombre, nombreEstado, StringComparison.OrdinalIgnoreCase);
         }
 
         private string SanitizarJs(string texto)

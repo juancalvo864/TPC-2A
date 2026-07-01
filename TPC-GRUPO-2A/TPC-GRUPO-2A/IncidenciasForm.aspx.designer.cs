@@ -11,7 +11,7 @@ namespace TPC_GRUPO_2A
 {
 
 
-    public partial class ReclamosForm
+    public partial class IncidenciasForm
     {
 
         /// <summary>

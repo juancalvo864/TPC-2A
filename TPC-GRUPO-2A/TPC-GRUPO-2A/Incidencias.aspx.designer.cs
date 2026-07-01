@@ -11,7 +11,7 @@ namespace TPC_GRUPO_2A
 {
 
 
-    public partial class Reclamos
+    public partial class Incidencias
     {
 
         /// <summary>
@@ -229,6 +229,78 @@ namespace TPC_GRUPO_2A
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReasignar;
+
+        /// <summary>
+        /// Control btnResolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResolver;
+
+        /// <summary>
+        /// Control btnCerrarIncidencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCerrarIncidencia;
+
+        /// <summary>
+        /// Control resolveModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl resolveModal;
+
+        /// <summary>
+        /// Control txtDatoResolucion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDatoResolucion;
+
+        /// <summary>
+        /// Control btnConfirmarResolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarResolver;
+
+        /// <summary>
+        /// Control closeModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl closeModal;
+
+        /// <summary>
+        /// Control txtComentarioCierre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioCierre;
+
+        /// <summary>
+        /// Control btnConfirmarCerrarIncidencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automÃ¡ticamente.
+        /// Para modificarlo, mueva la declaraciÃ³n del campo del archivo del diseÃ±ador al archivo de cÃ³digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarCerrarIncidencia;
 
         /// <summary>
         /// Control txtNuevoComentario.

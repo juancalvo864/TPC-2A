@@ -28,7 +28,7 @@ namespace TPC_GRUPO_2A.Controls
 
             QuitarActivo(lnkDashboard, lnkReclamos, lnkClientes, lnkUsuarios, lnkTipos, lnkPrioridades);
 
-            if (paginaActual.Contains("reclamos"))
+            if (paginaActual.Contains("incidencias"))
                 Activar(lnkReclamos);
             else if (paginaActual.Contains("clientes"))
                 Activar(lnkClientes);

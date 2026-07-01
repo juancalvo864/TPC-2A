@@ -106,7 +106,7 @@
     <Content Include="Images\ProfileImages\default.png" />
     <Content Include="PrioridadesForm.aspx" />
     <Content Include="RecuperarPassword.aspx" />
-    <Content Include="ReclamosForm.aspx" />
+    <Content Include="IncidenciasForm.aspx" />
     <Content Include="TiposIncidenciasForm.aspx" />
     <Content Include="UsuariosForm.aspx" />
     <Content Include="Content\pages css\loginStyle.css" />
@@ -118,7 +118,7 @@
     <Content Include="TiposIncidencias.aspx" />
     <Content Include="Prioridades.aspx" />
     <Content Include="Usuarios.aspx" />
-    <Content Include="Reclamos.aspx" />
+    <Content Include="Incidencias.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
@@ -236,12 +236,12 @@
     <Compile Include="RecuperarPassword.aspx.designer.cs">
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReclamosForm.aspx.cs">
-      <DependentUpon>ReclamosForm.aspx</DependentUpon>
+    <Compile Include="IncidenciasForm.aspx.cs">
+      <DependentUpon>IncidenciasForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReclamosForm.aspx.designer.cs">
-      <DependentUpon>ReclamosForm.aspx</DependentUpon>
+    <Compile Include="IncidenciasForm.aspx.designer.cs">
+      <DependentUpon>IncidenciasForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="SesionHelper.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -309,12 +309,12 @@
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reclamos.aspx.cs">
-      <DependentUpon>Reclamos.aspx</DependentUpon>
+    <Compile Include="Incidencias.aspx.cs">
+      <DependentUpon>Incidencias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reclamos.aspx.designer.cs">
-      <DependentUpon>Reclamos.aspx</DependentUpon>
+    <Compile Include="Incidencias.aspx.designer.cs">
+      <DependentUpon>Incidencias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>

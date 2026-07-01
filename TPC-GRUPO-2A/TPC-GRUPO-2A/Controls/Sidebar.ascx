@@ -15,7 +15,7 @@
             <span>Home</span>
         </a>
 
-        <a id="lnkReclamos" runat="server" href="~/Reclamos" class="sidebar-link">
+        <a id="lnkReclamos" runat="server" href="~/Incidencias" class="sidebar-link">
             <span class="sidebar-icon">I</span>
             <span>Incidencias</span>
         </a>

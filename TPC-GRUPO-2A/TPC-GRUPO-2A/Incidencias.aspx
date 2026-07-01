@@ -1,6 +1,8 @@
-<%@ Page Title="Incidencias" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reclamos.aspx.cs" Inherits="TPC_GRUPO_2A.Reclamos" %>
+<%@ Page Title="Incidencias" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Incidencias.aspx.cs" Inherits="TPC_GRUPO_2A.Incidencias" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:HiddenField ID="hdnIncidenteId" runat="server" />
+
     <main class="incident-workspace">
         <section class="card shadow-sm border-0">
             <div class="card-body p-4">
@@ -160,8 +162,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <asp:HiddenField ID="hdnIncidenteId" runat="server" />
-
                     <div class="row g-3 mb-3">
                         <div class="col-md-4">
                             <label class="form-label">Nro. reclamo</label>
@@ -195,9 +195,11 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-end gap-2 mb-4">
+                    <div class="d-flex justify-content-end gap-2 flex-wrap mb-4">
                         <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar cambios" CssClass="btn btn-primary" OnClick="btnGuardarCambios_Click" />
                         <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-outline-primary" OnClick="btnReasignar_Click" />
+                        <asp:Button ID="btnResolver" runat="server" Text="Marcar resuelto" CssClass="btn btn-success" OnClientClick="return alternarModal('incidentModal', 'resolveModal');" UseSubmitBehavior="false" CausesValidation="false" />
+                        <asp:Button ID="btnCerrarIncidencia" runat="server" Text="Cerrar incidencia" CssClass="btn btn-outline-secondary" OnClientClick="return alternarModal('incidentModal', 'closeModal');" UseSubmitBehavior="false" CausesValidation="false" />
                     </div>
 
                     <div class="card border-0 bg-light-subtle mb-3">
@@ -237,4 +239,69 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="resolveModal" tabindex="-1" aria-hidden="true" runat="server" clientidmode="Static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title mb-0">Marcar como resuelto</h5>
+                        <small class="text-muted">Ingresa el comentario de resolucion para este reclamo.</small>
+                    </div>
+                    <button type="button" class="btn-close" aria-label="Cerrar" onclick="return alternarModal('resolveModal', 'incidentModal');"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Comentario de resolucion</label>
+                    <asp:TextBox ID="txtDatoResolucion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Detalla la solucion aplicada, el resultado final o la respuesta entregada al cliente." />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" onclick="return alternarModal('resolveModal', 'incidentModal');">Volver</button>
+                    <asp:Button ID="btnConfirmarResolver" runat="server" Text="Confirmar resolucion" CssClass="btn btn-success" OnClick="btnConfirmarResolver_Click" UseSubmitBehavior="false" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="closeModal" tabindex="-1" aria-hidden="true" runat="server" clientidmode="Static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title mb-0">Cerrar incidencia</h5>
+                        <small class="text-muted">Registra el comentario final de cierre antes de finalizarla.</small>
+                    </div>
+                    <button type="button" class="btn-close" aria-label="Cerrar" onclick="return alternarModal('closeModal', 'incidentModal');"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Comentario de cierre</label>
+                    <asp:TextBox ID="txtComentarioCierre" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Indica la confirmacion final, el cierre administrativo o la observacion de cierre." />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" onclick="return alternarModal('closeModal', 'incidentModal');">Volver</button>
+                    <asp:Button ID="btnConfirmarCerrarIncidencia" runat="server" Text="Confirmar cierre" CssClass="btn btn-secondary" OnClick="btnConfirmarCerrarIncidencia_Click" UseSubmitBehavior="false" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function alternarModal(origenId, destinoId) {
+            var origen = document.getElementById(origenId);
+            var destino = document.getElementById(destinoId);
+
+            if (!origen || !destino || typeof bootstrap === "undefined") {
+                return false;
+            }
+
+            var modalOrigen = bootstrap.Modal.getOrCreateInstance(origen);
+            var modalDestino = bootstrap.Modal.getOrCreateInstance(destino);
+
+            origen.addEventListener('hidden.bs.modal', function () {
+                modalDestino.show();
+            }, { once: true });
+
+            modalOrigen.hide();
+            return false;
+        }
+    </script>
 </asp:Content>

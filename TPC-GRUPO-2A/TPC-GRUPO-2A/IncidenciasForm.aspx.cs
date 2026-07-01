@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace TPC_GRUPO_2A
 {
-    public partial class ReclamosForm : Page
+    public partial class IncidenciasForm : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +37,7 @@ namespace TPC_GRUPO_2A
                 negocio.CrearIncidencia(incidente, usuario);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "swOk",
-                    "swExito('Incidencia registrada correctamente.', 'Reclamos.aspx');", true);
+                    "swExito('Incidencia registrada correctamente.', 'Incidencias.aspx');", true);
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace TPC_GRUPO_2A
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Reclamos.aspx");
+            Response.Redirect("~/Incidencias.aspx");
         }
 
         private void CargarCombos()
