@@ -25,8 +25,8 @@
             <span>Clientes</span>
         </a>
 
-        <div class="sidebar-section">Administracion</div>
-       
+        <div id="divAdministracion" runat="server" class="sidebar-section">Administracion</div>
+
         <a id="lnkUsuarios" runat="server" href="~/Usuarios" class="sidebar-link">
             <span class="sidebar-icon">U</span>
             <span>Usuarios</span>

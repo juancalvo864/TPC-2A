@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="login-title">Iniciar sesión</div>
-                                <div class="login-subtitle">Ingresá tus credenciales para continuar</div>
+                                <div class="login-subtitle">Ingresa tus credenciales para continuar</div>
 
                                 <asp:Panel ID="pnlError" runat="server" Visible="false" CssClass="error-msg">
                                     <i class="bi bi-exclamation-circle me-1"></i>
@@ -97,7 +97,7 @@
                                             runat="server" 
                                             CssClass="form-control" 
                                             TextMode="Email" 
-                                            placeholder="Ingresá tu email" />
+                                            placeholder="Ingresa tu email" />
                                     </div>
                                 </div>
 

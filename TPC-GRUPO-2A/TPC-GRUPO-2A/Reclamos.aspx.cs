@@ -42,9 +42,16 @@ namespace TPC_GRUPO_2A
             if (e.CommandName != "Abrir")
                 return;
 
-            int id = int.Parse(e.CommandArgument.ToString());
-            CargarModal(id);
-            MostrarModal();
+            try
+            {
+                int id = int.Parse(e.CommandArgument.ToString());
+                CargarModal(id);
+                MostrarModal();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "swErr", $"swError('{SanitizarJs(ex.Message)}');", true);
+            }
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
@@ -261,6 +268,9 @@ namespace TPC_GRUPO_2A
             Usuario usuario = Session["usuario"] as Usuario;
             IncidenteNegocio negocio = new IncidenteNegocio();
             Incidente incidente = negocio.ObtenerPorId(id);
+
+            if (!negocio.PuedeVer(incidente, usuario))
+                throw new ReglaNegocioException("No tiene permisos para ver esta incidencia.");
 
             hdnIncidenteId.Value = incidente.Id.ToString();
             txtNroReclamo.Text = incidente.NroReclamo;

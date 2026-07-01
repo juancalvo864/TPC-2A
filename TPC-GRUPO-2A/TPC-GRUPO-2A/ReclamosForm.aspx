@@ -5,11 +5,11 @@
         <div class="incident-form-head">
             <div>
                 <h2 class="mb-1">Carga de incidencia</h2>
-                <p class="text-muted mb-0">Registrá el reclamo y el sistema se encarga del alta, asignación y estado inicial.</p>
+                <p class="text-muted mb-0">Registra el reclamo y el sistema se encarga del alta, asignación y estado inicial.</p>
             </div>
         </div>
 
-        <asp:ValidationSummary ID="vsErrores" runat="server" CssClass="alert alert-danger" HeaderText="Revisá los siguientes campos:" ValidationGroup="Incidencia" />
+        <asp:ValidationSummary ID="vsErrores" runat="server" CssClass="alert alert-danger" HeaderText="Revisa los siguientes campos:" ValidationGroup="Incidencia" />
 
         <div class="card shadow-sm">
             <div class="card-body">
@@ -30,9 +30,9 @@
                         <asp:RequiredFieldValidator ID="rfvPrioridad" runat="server" ControlToValidate="ddlPrioridad" InitialValue="" ErrorMessage="Debés seleccionar una prioridad." CssClass="text-danger small" Display="Dynamic" ValidationGroup="Incidencia" />
                     </div>
                     <div class="col-12">
-                        <label class="form-label">Problemática</label>
+                        <label class="form-label">Problematica</label>
                         <asp:TextBox ID="txtProblematica" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" placeholder="Describí claramente el reclamo del cliente..." />
-                        <asp:RequiredFieldValidator ID="rfvProblematica" runat="server" ControlToValidate="txtProblematica" ErrorMessage="Debés ingresar la problemática." CssClass="text-danger small" Display="Dynamic" ValidationGroup="Incidencia" />
+                        <asp:RequiredFieldValidator ID="rfvProblematica" runat="server" ControlToValidate="txtProblematica" ErrorMessage="Debes ingresar la problematica." CssClass="text-danger small" Display="Dynamic" ValidationGroup="Incidencia" />
                     </div>
                 </div>
             </div>

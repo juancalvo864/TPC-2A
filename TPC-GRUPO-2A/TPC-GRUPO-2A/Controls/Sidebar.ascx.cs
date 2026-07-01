@@ -15,6 +15,7 @@ namespace TPC_GRUPO_2A.Controls
         private void AplicarVisibilidadPorRol()
         {
             lnkUsuarios.Visible = SesionHelper.EsAdministrador;
+            divAdministracion.Visible = !SesionHelper.EsTelefonista;
 
             bool noEsTelefonista = !SesionHelper.EsTelefonista;
             lnkTipos.Visible       = noEsTelefonista;

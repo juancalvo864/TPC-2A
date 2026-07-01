@@ -27,7 +27,7 @@ namespace TPC_GRUPO_2A
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
             {
-                MostrarError("Completá usuario y contraseña.");
+                MostrarError("Completa usuario y contraseña.");
                 return;
             }
 

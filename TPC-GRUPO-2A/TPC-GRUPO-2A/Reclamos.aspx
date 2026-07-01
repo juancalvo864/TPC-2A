@@ -190,7 +190,7 @@
                             </asp:Panel>
                         </div>
                         <div class="col-12">
-                            <label class="form-label">Problemática</label>
+                            <label class="form-label">Problematica</label>
                             <asp:TextBox ID="txtProblematicaDetalle" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" />
                         </div>
                     </div>
